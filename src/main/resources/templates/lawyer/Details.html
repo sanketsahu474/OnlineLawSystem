@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Details</title>
+
+    <!-- Bootstrap core CSS -->
+
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" /> 
+
+    <!-- Custom styles for this template -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" /> 
+		<link rel="stylesheet" type="text/css" th:href="@{/css/UpdateIpcCode.css}" /> 
+		<!-- Latest compiled and minified CSS -->
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/LawyerHome">Law System</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/SearchIpc">Search IpcCode</a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Details">Fill Details</a>
+    </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/ContactLawyer">Contact Us</a>
+              </li>
+<!-- apply it here -->          
+		 <li class="nav-item">
+		 <form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form> 
+   <!--     <a class="nav-link" href="contact.html">Logout</a> -->  
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" th:style="'padding-left: 26px; background-image: url(' + @{/images/justice.jpg}+');'">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item"th:style="'padding-left: 26px; background-image: url(' + @{/images/table.jpg} +');'">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/india_flag_emblem-colombotelegraph.jpg} +');'">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+	<div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/courts.jpg} +');'">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+          </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+<div class="container" style="margin-right:400px">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-4">
+				<form autocomplete="off" action="#" th:action="@{/Details}"
+					th:object="${Lawyer_info}" method="post" class="form-horizontal" role="form">
+					<h3 class="form-signin-headings" th:text="Registration"></h3>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+						<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="validation-message"></label>
+						<input type="text" th:field="*{name}" placeholder="Name"
+								class="form-control" /> 
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+						<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+								class="validation-message"></label>
+							<input type="text" th:field="*{lastName}"
+								placeholder="Last Name" class="form-control" /> 
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control" /> <label
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"></label>
+						</div>
+					</div>
+					<!-- changes starts from here -->
+				<div class="form-group">
+						<div class="col-sm-9"><h3>* Role:</h3>
+						<label	th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+								class="validation-message"></label>
+								 <select th:field="*{role}"  style="width: 252px;height: 32px; color:black;">
+	    	          <option th:each="role : ${allRoles}" th:value="${role}" th:text="${role}">Role</option>
+	    	       </select>
+						</div>
+					</div>
+					<!-- changes are done till here -->
+					<div class="form-group">
+						<div class="col-sm-9">
+							<input type="password" th:field="*{password}"
+								placeholder="Password" class="form-control" /> <label
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+								class="validation-message"></label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Register User</button>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="reset" class="btn btn-primary btn-block">Reset Details</button>
+						</div>
+					</div>
+					<span th:utext="${successMessage}"></span>
+					</form>
+					</div>
+					</div>
+					</div>
+					
+	    <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+      <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

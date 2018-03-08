@@ -1,4 +1,4 @@
-/*package com.example.demo.component;
+package com.example.demo.component;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class UserComponent {
 
 /*public UserDto getUser(int id)
 {
-	//User user=userRepository.findOne(id);
+	User user=userRepository.findOne(id);
 	userDto = mapper.map(user, UserDto.class);
 	return userDto;
-}
 }*/
+}
 

@@ -10,10 +10,11 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- <video autoplay loop id="myVideo"> 
-  <source src="rain.mp4" type="video/mp4">
-</video>  -->
-
+ <!-- <video autoplay loop id="myVideo" > 
+  <source th:src="@{/videos/3D Scales Of Justice Looped Animation.mp4}" type="video/mp4">
+</video> 
+ -->
+ <div th:style="'padding-left: 0px; background-image: url(' + @{/images/courts.jpg} +');'">
 	<div class="container" style="margin-top: 300px;">
 		<form th:action="@{/login}" method="POST" class="form-signin">
 			<h3 class="form-signin-heading" th:text="Welcome"></h3>
@@ -37,6 +38,7 @@
 	
 		
 </div>  
+	</div>
 	</div>
 </body>
 </html>

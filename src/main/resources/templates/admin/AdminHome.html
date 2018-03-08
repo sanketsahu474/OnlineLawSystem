@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
   <head>
 
@@ -8,14 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>Home</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/home/mindfire/Desktop/online law system/startbootstrap-modern-business-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ 
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" /> 
 
     <!-- Custom styles for this template -->
-    <link href="/home/mindfire/Desktop/online law system/startbootstrap-modern-business-gh-pages/css/modern-business.css" rel="stylesheet">
-
+	<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" /> 
   </head>
 
   <body>
@@ -23,25 +24,29 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html">Law System</a>
+        <a class="navbar-brand" href="/AdminHome">Law System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="about.html">IPC Codes</a>
+              <a class="nav-link" href="/UpdateIpcCode">Update IPC Codes</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="services.html">Lawyer Details</a>
-            </li>
-		 <li class="nav-item">
-              <a class="nav-link" href="contact.html">Cases</a>
+              <a class="nav-link" href="/UserInfo">Check User Details</a>
+    </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
+              <a class="nav-link" href="/Contact">Contact Us</a>
+              </li>
 <!-- apply it here -->          
 		 <li class="nav-item">
-              <a class="nav-link" href="contact.html">Logout</a>
+		 <form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form> 
+		</li>
+   <!--     <a class="nav-link" href="contact.html">Logout</a> -->  
           </ul>
         </div>
       </div>
@@ -53,24 +58,25 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('/home/mindfire/Desktop/online law system/020116-Symbol-of-Justice.jpg')">
+          <div class="carousel-item active" th:style="'padding-left: 26px; background-image: url(' + @{/images/justice.jpg}+');'">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('/home/mindfire/Desktop/online law system/image045.jpg')">
+          <div class="carousel-item"th:style="'padding-left: 26px; background-image: url(' + @{/images/table.jpg} +');'">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('/home/mindfire/Desktop/online law system/india_flag_emblem-colombotelegraph.jpg')">
+          <div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/india_flag_emblem-colombotelegraph.jpg} +');'">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
-	<div class="carousel-item" style="background-image: url('/home/mindfire/Desktop/online law system/HIgh-Court-Weekly-round-up-min.jpg')">
+	<div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/courts.jpg} +');'">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
@@ -98,7 +104,7 @@
           <div class="card h-100">
             <h4 class="card-header">Indian law System:Quick Facts</h4>
             <div class="card-body">
-              <p class="card-text"><pre>India became an independent democratic republic in 1947 and its constitution, which came into force on 26th November 1949,
+              <p class="card-text">India became an independent democratic republic in 1947 and its constitution, which came into force on 26th November 1949,
 is the supreme law.India has a common law legal system whose infrastructure bears the influence of British colonial rule. 
 The constitution is based on the Government of India Act 1935 passed by British Parliament. 
 The Indian constitution lays out a federal Union of 28 States, 6 union territories and 1 national capital territory. 
@@ -106,7 +112,8 @@ The Union and States have separate executive and legislative branches, whereas t
 government.Law generated by the Union is superior to that of the States.
 
  
-
+<br>
+<br>
 
 The nominal head of the Union executive is an elected President, but the Prime Minister, leader of the majority party and 
 head of the Union Council of Ministers, is more politically powerful. India has a bicameral Parliament whose upper house 
@@ -114,20 +121,20 @@ is the Council of States (Rajya Sabha) and whose lower house is the House of Peo
 by a Governor, and while most have a unicameral legislative body called the Legislative Assembly, some are bicameral with a 
 Legislative Council as well.
 
- 
+ <br>
+ <br>
 
  
 Apart from the English influence, personal laws are frequently based on Hindu and Islamic law.
 Hindu law has been codified and Islamic law is based on authoritative commentaries and precedents.
 (The LawBod has works dealing with these great religious legal systems with shelf marks starting Ancient Hindu and Islamic).
 
-</pre></p>
+</p>
             </div>
             
           </div>
         </div>
-     </div>
-     </div>   
+      
       <!-- /.row -->
 
       <h2>Indian Courts</h2>
@@ -135,10 +142,10 @@ Hindu law has been codified and Islamic law is based on authoritative commentari
       <div class="row">
         <div class="col-lg-6 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="/home/mindfire/Desktop/online law system/supreme.jpg" alt=""></a>
+            <a href="http://supremecourtofindia.nic.in/"><img  th:src="@{/images/supreme.jpg}" class="card-img-top" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Supreme Court</a>
+                <a href="http://supremecourtofindia.nic.in/">Supreme Court</a>
               </h4>
               <p class="card-text">The supreme court of India is highest or the apes jurdiction forum and final court of appeal
 as established.The supreme court enjoy the writ, appelate,original and advisory jurdiction.As the final court of appeal of the country, it takes up appeals primarily against verdicts of the High Courts of various states of the Union and other courts and tribunals. It safeguards fundamental rights of citizens and settles disputes between various governments in the country. As an advisory court, it hears matters which may specifically be referred to it under the Constitution by the President of India. It also may take cognisance of matters on its own (or 'suo moto'), without anyone drawing its attention to them. The law declared by the Supreme Court becomes binding on all courts within India and also by the union and state governments.</p>
@@ -147,7 +154,7 @@ as established.The supreme court enjoy the writ, appelate,original and advisory 
         </div>
         <div class="col-lg-6 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="/home/mindfire/Desktop/online law system/high.jpg" alt=""></a>
+            <a href="#"><img class="card-img-top" th:src="@{/images/high.jpg}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">High Court</a>
@@ -161,19 +168,19 @@ However, the work of most High Courts primarily consists of appeals from lower c
         </div>
         <div class="col-lg-6 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="/home/mindfire/Desktop/online law system/district.jpg" alt=""></a>
+            <a href="http://indiancourts.nic.in/districtcourt.html"><img class="card-img-top" th:src="@{/images/district.jpg}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">District/Session Court</a>
+                <a href="http://indiancourts.nic.in/districtcourt.html">District/Session Court</a>
               </h4>
               <p class="card-text">Generally each state is divided into judicial district presided over by a district and session judge.
-He is known as districtjudge when preside over a civil case and a session judge when preside over a criminal case.The District Courts (Hindi: ज़िला न्यायालय) of India are the district courts of the State governments in India for every district or for one or more districts together taking into account the number of cases, population distribution in the district. They administer justice in India at a district level.</p>
+He is known as district judge when preside over a civil case and a session judge when preside over a criminal case.The District Courts (Hindi: ज़िला न्यायालय) of India are the district courts of the State governments in India for every district or for one or more districts together taking into account the number of cases, population distribution in the district. They administer justice in India at a district level.</p>
             </div>
           </div>
         </div>
         <div class="col-lg-6 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="/home/mindfire/Desktop/online law system/tribunal.png" alt=""></a>
+            <a href="#"><img class="card-img-top" th:src="@{/images/tribunal.png}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#">Various Tribunal and Appelate Boards</a>
@@ -200,8 +207,10 @@ The power,jurdiction and procedure of these forum is generally governed by the s
           </ul>
         </div>
         <div class="col-lg-6">
-          <img class="img-fluid rounded" src="/home/mindfire/Desktop/online law system/lawInstitute.jpg" alt="">
+          <img class="img-fluid rounded" th:src="@{/images/lawInstitute.jpg}" alt="">
         </div>
+      </div>
+      </div>
       </div>
       <!-- /.row -->
 
@@ -210,8 +219,8 @@ The power,jurdiction and procedure of these forum is generally governed by the s
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="/home/mindfire/Desktop/online law system/startbootstrap-modern-business-gh-pages/vendor/jquery/jquery.min.js"></script>
-    <script src="/home/mindfire/Desktop/online law system/startbootstrap-modern-business-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+      <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
   </body>
 
