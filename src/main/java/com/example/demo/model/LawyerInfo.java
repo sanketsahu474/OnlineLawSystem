@@ -1,5 +1,4 @@
 package com.example.demo.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ public class LawyerInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "lawyer_id")
-	private int lawyer_id;
+	private int lawyerid;
 	@Column(name="first_name")
 	@NotEmpty(message="*please input your first name")
 	@Pattern(regexp = "^[a-zA-Z]+$", message = "*please enter last name correctly")
@@ -35,7 +34,7 @@ public class LawyerInfo {
 	@Column(name = "emailid")
 	@Email(message = "*Please provide a valid Email")
 	@NotEmpty(message = "*Please provide an email")
-	@Pattern(regexp="/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/",message = "*please enter email id correctly")
+	//@Pattern(regexp="/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/",message = "*please enter email id correctly")
 	private String email;
 	@Column(name="phone_no")
 	@NotEmpty(message="please provide your phone no")
@@ -52,25 +51,21 @@ public class LawyerInfo {
 	private String type;
 	@Column(name = "experience")
 	@NotEmpty(message="please input experince")
-	@Pattern(regexp="^\\d{2}$",message ="*insert your experience informat of 2digit number")
-	private int experience;
+	@Pattern(regexp="^\\d{2}$",message ="*insert your experience in format of 2 digit number")
+	private String experience;
 	@Column(name = "total_cases")
+	@Pattern(regexp="^\\d{3}$",message ="*insert your experience in format of 3 digit number")
 	@NotEmpty(message="please input no. of total cases")
-	private int totalCases;
-	@Column(name = "won")
-	@NotEmpty(message="please input no. of cases you won")
-	private int won;
-	@Column(name = "loss")
-	@NotEmpty(message="please input no. of cases you loss")
-	private int loss;
+	private String totalCases;
+	
 	/*@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_lawyer", joinColumns= @JoinColumn (name= "lawyer_id"),inverseJoinColumns = @JoinColumn(name="user_id"))
 	private Set<User>users;*/
-	public int getLawyer_id() {
-		return lawyer_id;
+	public int getLawyerid() {
+		return lawyerid;
 	}
-	public void setLawyer_id(int lawyer_id) {
-		this.lawyer_id = lawyer_id;
+	public void setLawyerid(int lawyerid) {
+		this.lawyerid = lawyerid;
 	}
 	public String getFname() {
 		return fname;
@@ -114,30 +109,19 @@ public class LawyerInfo {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getExperience() {
+	public String getExperience() {
 		return experience;
 	}
-	public void setExperience(int experience) {
+	public void setExperience(String experience) {
 		this.experience = experience;
 	}
-	public int getTotalCases() {
+	public String getTotalCases() {
 		return totalCases;
 	}
-	public void setTotalCases(int totalCases) {
+	public void setTotalCases(String totalCases) {
 		this.totalCases = totalCases;
 	}
-	public int getWon() {
-		return won;
-	}
-	public void setWon(int won) {
-		this.won = won;
-	}
-	public int getLoss() {
-		return loss;
-	}
-	public void setLoss(int loss) {
-		this.loss = loss;
-	}
+
 	/*public Set<User> getUsers() {
 		return users;
 	}

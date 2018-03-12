@@ -37,7 +37,7 @@ public class IpcCodes {
 		return Sequenceno;
 	}
 	public void setSequenceno(int sequenceno) {
-		Sequenceno = sequenceno;
+		this.Sequenceno = sequenceno;
 	}
 	public String getSection() {
 		return section;

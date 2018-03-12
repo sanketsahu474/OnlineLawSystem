@@ -5,7 +5,7 @@
 	<title>Registration Form</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/Registration.css}" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -50,7 +50,7 @@
 								class="validation-message"></label>
 						</div>
 					</div>
-					<!-- changes starts from here -->
+				
 				<div class="form-group">
 						<div class="col-sm-9"><h3>* Role:</h3>
 						<label	th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
@@ -60,7 +60,7 @@
 	    	       </select>
 						</div>
 					</div>
-					<!-- changes are done till here -->
+					
 					<div class="form-group">
 						<div class="col-sm-9">
 							<input type="password" th:field="*{password}"

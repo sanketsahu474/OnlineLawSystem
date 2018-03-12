@@ -15,8 +15,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" /> 
 
     <!-- Custom styles for this template -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" /> 
-		<link rel="stylesheet" type="text/css" th:href="@{/css/UpdateIpcCode.css}" /> 
+	<link rel="stylesheet" type="text/css" th:href="@{/css/Details.css}" />
 		<!-- Latest compiled and minified CSS -->
 
 </head>
@@ -34,7 +33,7 @@
               <a class="nav-link" href="/SearchIpc">Search IpcCode</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Details">Fill Details</a>
+              <a class="nav-link" href="/lawyer/Details">Fill Details</a>
     </li>
             <li class="nav-item">
               <a class="nav-link" href="/ContactLawyer">Contact Us</a>
@@ -91,61 +90,106 @@
         </a>
       </div>
     </header>
-<div class="container" style="margin-right:400px">
+<div class="container" style="margin-right:200px; margin-top:20px; margin-bottom:20px">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-4">
-				<form autocomplete="off" action="#" th:action="@{/Details}"
-					th:object="${Lawyer_info}" method="post" class="form-horizontal" role="form">
-					<h3 class="form-signin-headings" th:text="Registration"></h3>
+				<form autocomplete="off" action="#" th:action="@{/lawyer/Details}" th:object="${lawyer}" method="post" class="form-horizontal" role="form">
+					<h3 class="form-signin-headings" th:text="LawyerDetails"></h3>
 					
 					<div class="form-group">
 						<div class="col-sm-9">
-						<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+						<label th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"
 								class="validation-message"></label>
-						<input type="text" th:field="*{name}" placeholder="Name"
+						<input type="text" th:field="*{fname}" placeholder="First Name"
 								class="form-control" /> 
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-sm-9">
-						<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+						<label	th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"
 								class="validation-message"></label>
-							<input type="text" th:field="*{lastName}"
+							<input type="text" th:field="*{lname}"
 								placeholder="Last Name" class="form-control" /> 
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-9">
-							<input type="text" th:field="*{email}" placeholder="Email"
-								class="form-control" /> <label
-								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+							
+							<label	th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 								class="validation-message"></label>
+								<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control" /> 
 						</div>
 					</div>
-					<!-- changes starts from here -->
-				<div class="form-group">
-						<div class="col-sm-9"><h3>* Role:</h3>
-						<label	th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
-								class="validation-message"></label>
-								 <select th:field="*{role}"  style="width: 252px;height: 32px; color:black;">
-	    	          <option th:each="role : ${allRoles}" th:value="${role}" th:text="${role}">Role</option>
-	    	       </select>
-						</div>
-					</div>
-					<!-- changes are done till here -->
+					
 					<div class="form-group">
 						<div class="col-sm-9">
-							<input type="password" th:field="*{password}"
-								placeholder="Password" class="form-control" /> <label
-								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+						<label
+								th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"
 								class="validation-message"></label>
+							<input type="text" th:field="*{phoneNo}"
+								placeholder="PhoneNo" class="form-control" /> 
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Register User</button>
+						<label
+								th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+								class="validation-message"></label>
+							<input type="text" th:field="*{address}"
+								placeholder="Office Address" class="form-control" /> 
+						</div>
+					</div>
+						<div class="form-group">
+						<div class="col-sm-9"><h3>* Court:</h3>
+						<label	th:if="${#fields.hasErrors('court')}" th:errors="*{court}"
+								class="validation-message"></label>
+								 <select th:field="*{court}"  style="width: 252px;height: 32px; color:black;">
+	    	          <option th:each="court : ${allCourts}" th:value="${court}" th:text="${court}">Court</option>
+	    	       </select>
+						</div>
+					</div>
+					
+						<div class="form-group">
+						<div class="col-sm-9"><h3>* Type:</h3>
+						<label	th:if="${#fields.hasErrors('type')}" th:errors="*{type}"
+								class="validation-message"></label>
+								 <select th:field="*{type}"  style="width: 252px;height: 32px; color:black;">
+	    	          <option th:each="type : ${allTypes}" th:value="${type}" th:text="${type}">Type</option>
+	    	       </select>
+						</div>
+					</div>
+					
+					
+				
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+						<label
+								th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}"
+								class="validation-message"></label>
+							<input type="text" th:field="*{experience}"
+								placeholder="experience" class="form-control" /> 
+						</div>
+					</div>
+				
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+						<label
+								th:if="${#fields.hasErrors('totalCases')}" th:errors="*{totalCases}"
+								class="validation-message"></label>
+							<input type="text" th:field="*{totalCases}"
+								placeholder="Total Cases" class="form-control" /> 
+						</div>
+					</div>
+					
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Submit Details</button>
 						</div>
 					</div>
 					
@@ -155,11 +199,17 @@
 						</div>
 					</div>
 					<span th:utext="${successMessage}"></span>
+				
 					</form>
 					</div>
 					</div>
 					</div>
-					
+					  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Online Law Sysetm &copy;  Website 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 	    <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
       <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
