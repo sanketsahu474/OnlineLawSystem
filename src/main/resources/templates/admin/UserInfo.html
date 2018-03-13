@@ -27,23 +27,24 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="/AdminHome.html">Law System</a>
+        <a class="navbar-brand" href="/admin/AdminHome.html">Law System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            
              <li class="nav-item">
-              <a class="nav-link" href="/AddIpcCode">Add IPC Codes</a> 
-            </li>
-              <a class="nav-link" href="/UpdateIpcCode.html">Update IPC Codes</a>
+              <a class="nav-link" href="/admin/AddIpcCode">Add IPC Codes</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/UserInfo.html">Check User Details</a>
+              <a class="nav-link" href="/admin/UpdateIpcCode.html">Update IPC Codes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Contact.html">Contact Us</a>
+              <a class="nav-link" href="/admin/UserInfo.html">Check User Details</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/Contact.html">Contact Us</a>
 <!-- apply it here -->          
 		 <li class="nav-item">
 		 <form th:action="@{/logout}" method="get">
@@ -96,7 +97,41 @@
         </a>
       </div>
     </header>
-      <!-- for main component -->
+    <div class="container" class="form-horizontal" style=" margin-top:20px; margin-bottom:20px">
+		<div class="row">
+			<div class="col-md-3 col-md-offset-4">
+			<!--  <form autocomplete="off" action="#" th:action="@{/delete_user}"
+					th:object="${user}" method="post" class="form-horizontal"role="form">-->
+					<h3 class="form-signin-headings" th:text="Users_List"></h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Role</th>
+                     <!--     <th>Select<th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "users: ${user}">
+                    
+                            <td th:text="${users.name}"></td>
+                            <td th:text="${users.lastName}"></td>
+                            <td th:text="${users.role}"></td>
+                           <!--  <td><input type="radio" value="${users.delete}"/></td>  -->
+                        </tr>
+                </tbody>
+            </table>            
+           <!--  <input type="submit" value="Delete user(s)" class="btn-danger" />
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --> 
+          <!--  </form> --> 
+      </div>
+      </div>
+      </div>
+      
+      
+      
+      
       <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Online Law Sysetm &copy;  Website 2018</p>

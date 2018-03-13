@@ -11,4 +11,5 @@ public interface UserService {
 	public void saveLawyer(LawyerInfo lawyer);
 	public IpcCodes findipcBySection(String section);
 	public void saveIpcCode(IpcCodes ipc);
+	public void delete (User user);
 }

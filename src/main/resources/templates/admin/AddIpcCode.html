@@ -27,23 +27,23 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="/AdminHome.html">Law System</a>
+        <a class="navbar-brand" href="/admin/AdminHome.html">Law System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-              <a class="nav-link" href="/AddIpcCode">Add IPC Codes</a> 
+              <a class="nav-link" href="/admin/AddIpcCode">Add IPC Codes</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/UpdateIpcCode.html">Update IPC Codes</a>
+              <a class="nav-link" href="/admin/UpdateIpcCode.html">Update IPC Codes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/UserInfo.html">Check User Details</a>
+              <a class="nav-link" href="/admin/UserInfo.html">Check User Details</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Contact.html">Contact Us</a>
+              <a class="nav-link" href="/admin/Contact.html">Contact Us</a>
 <!-- apply it here -->          
 		 <li class="nav-item">
 		 <form th:action="@{/logout}" method="get">
@@ -98,10 +98,10 @@
     </header>
     
    
-    <div class="container" style="margin-right:200px; margin-top:20px; margin-bottom:20px">
+    <div class="container" style="margin-right:100px; margin-top:20px; margin-bottom:20px">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-4">
-				<form autocomplete="off" action="#" th:action="@{/admin/AddIpcCode}"
+			<div class="col-md-6 col-md-offset-6">
+				<form autocomplete="off" action="#" th:action="@{/AddIpcCode}"
 					th:object="${ipc}" method="post" class="form-horizontal"
 					role="form">
 					<h3 class="form-signin-headings" th:text="ADDIPCCODES"></h3>

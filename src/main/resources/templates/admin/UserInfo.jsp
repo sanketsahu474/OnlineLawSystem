@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>UpdateIpcCode</title>
+    <title>UserInfo</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -33,7 +35,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-           <li class="nav-item">
+            
+             <li class="nav-item">
               <a class="nav-link" href="/admin/AddIpcCode">Add IPC Codes</a> 
             </li>
             <li class="nav-item">
@@ -96,89 +99,51 @@
         </a>
       </div>
     </header>
-  
-
-    <!-- Bootstrap core JavaScript -->
-
-<!------ Include the above in your HEAD tag ---------->
-
- <div class="container" style="margin-right:100px; margin-top:20px; margin-bottom:20px">
+    <div class="container" style="margin-right:200px; margin-top:20px; margin-bottom:20px">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-6">
-				<form autocomplete="off" action="#" th:action="@{/UpdateIpcCode}"
-					th:object="${ipc}" method="post" class="form-horizontal"
-					role="form">
-					<h3 class="form-signin-headings" th:text="UpdateIPCCODES"></h3>
-					
-				<div class="form-group">
-						<div class="col-sm-9">
-						  <label th:if="${#fields.hasErrors('section')}" th:errors="*{section}"
-								class="validation-message"></label>
-						<input type="text" th:field="*{section}" placeholder="Section no."
-								class="form-control" /> 
-						</div>
-					</div>
-
-					
-				
-				<div class="form-group">
-						<div class="col-sm-9"><h3>* Keywords:</h3>
-						  <label	th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}"
-								class="validation-message"></label>
-								 <select th:field="*{keyword}"  style="width: 252px;height: 32px; color:black;">
-	    	          <option th:each="keyword : ${allkeywords}" th:value="${keyword}" th:text="${keyword}">Keyword</option>
-	    	        
-	    	       </select>
-						</div>
-					</div>
-					
-						<div class="form-group">
-						<div class="col-sm-9">
-						<label th:if="${#fields.hasErrors('codeName')}" th:errors="*{codeName}"
-								class="validation-message"></label>
-						<input type="text" th:field="*{codeName}" placeholder="Code Name"
-								class="form-control" /> 
-						</div>
-					</div>
-					
-						<div class="form-group">
-						<div class="col-sm-9">
-						<label th:if="${#fields.hasErrors('codeDescription')}" th:errors="*{codeDescription}"
-								class="validation-message"></label>
-						<textarea rows="15" cols="500" th:field="*{codeDescription}" placeholder="Code Description"
-								class="form-control" maxlength="3999" style="resize:none"> </textarea>
-						</div>
-					</div>
-					
-
-					<div class="form-group">
-						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Add</button>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-							<button type="reset" class="btn btn-primary btn-block">Reset</button>
-						</div>
-					</div>
-					<span th:utext="${successMessage}"></span>
-					
-					
-				</form>
-			</div>
-		</div>
-		</div>
-  <!-- for main component -->
+			<div class="col-md-6 col-md-offset-4">
+			<form autocomplete="off" action="#" th:action="@{/admin/UserInfo}"
+					th:object="${user}" method="post" class="form-horizontal"role="form">
+                <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email/login</th>
+                    <th>Profession</th>
+                    <th>Select<th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach varStatus="us" var="user" items="${userListWrapper.users}" >
+                    <tr>
+                        <td><form>input type="hidden" path="users[${us.index}].firstName"/>${user.firstName}</td>
+                        <td><form:input type="hidden" path="users[${us.index}].lastName"/> ${user.lastName}</td>
+                        <td><form:input type="hidden" path="users[${us.index}].login"/>${user.login}</td>
+                        <td><form:input type="hidden" path="users[${us.index}].profession"/>${user.profession}</td>
+                        <td><form:checkbox path="users[${us.index}].delete" value="${user.delete}"/></td>
+         <form:input type="hidden" path="users[${us.index}].id"/>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>            
+        <input type="submit" value="Delete user(s)" class="btn-danger" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            </form>
+      </div>
+      </div>
+      </div>
+      
+      
+      
+      
       <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Online Law Sysetm &copy;  Website 2018</p>
       </div>
       <!-- /.container -->
     </footer>
-
-      <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+     <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
       <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
     </body>
     </html>
-    

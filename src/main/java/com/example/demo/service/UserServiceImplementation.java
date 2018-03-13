@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
+
 import java.util.Arrays;
 import java.util.HashSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class UserServiceImplementation implements UserService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findByEmail(email);
@@ -49,6 +49,11 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public LawyerInfo findLawyerByEmail(String email) {
 		return lawyerRepository.findByEmail(email);
+	}
+	@Override
+	public void delete(User user)
+	{
+		userRepository.delete(user);
 	}
 	
 	@Override
@@ -76,4 +81,8 @@ public class UserServiceImplementation implements UserService {
 		ipc.setCodeDescription(ipc.getCodeDescription());
 		ipccodeRepository.save(ipc);
 	}
-}
+	
+}	
+
+	
+	
