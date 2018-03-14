@@ -60,6 +60,7 @@ public class UserServiceImplementation implements UserService {
 	public IpcCodes findipcBySection(String section) {
 		return ipccodeRepository.findBySection(section);
 		}
+
 	
 	public void saveLawyer(LawyerInfo lawyer) {
 		lawyer.setFname(lawyer.getFname());

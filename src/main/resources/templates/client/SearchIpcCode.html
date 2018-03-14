@@ -17,7 +17,7 @@
 
     <!-- Custom styles for this template -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" /> 
-		<link rel="stylesheet" type="text/css" th:href="@{/css/UpdateIpcCode.css}" /> 
+		<link rel="stylesheet" type="text/css" th:href="@{/css/SearchIpcCodes.css}" /> 
 		<!-- Latest compiled and minified CSS -->
 
   </head>
@@ -27,26 +27,26 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="/ClientHome.html">Law System</a>
+        <a class="navbar-brand" href="/client/ClientHome.html">Law System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/SearchIpcCode">Search IPC Codes</a> 
+              <a class="nav-link" href="/client/SearchIpcCode">Search IPC Codes</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/FillDetail">fill Details</a>
+              <a class="nav-link" href="/client/FillDetail">fill Details</a>
     </li>
       <li class="nav-item">
-              <a class="nav-link" href="/SearchLawyer">Search Lawyer</a>
+              <a class="nav-link" href="/client/SearchLawyer">Search Lawyer</a>
               </li>
                 <li class="nav-item">
-              <a class="nav-link" href="/Cases">Cases</a>
+              <a class="nav-link" href="/client/Cases">Cases</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ContactClient">Contact Us</a>
+              <a class="nav-link" href="/client/ContactClient">Contact Us</a>
               </li>
 <!-- apply it here -->          
 		 <li class="nav-item">
@@ -54,7 +54,6 @@
 			<button class="btn btn-md btn-danger btn-block" name="registration"
 				type="Submit">Logout</button>
 		</form> </li>
-   <!--     <a class="nav-link" href="contact.html">Logout</a> -->  
           </ul>
         </div>
       </div>
@@ -101,6 +100,79 @@
         </a>
       </div>
     </header>
+     <div class="container" style="margin-right:100px; margin-top:20px; margin-bottom:20px">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+				<form autocomplete="off" action="#" th:action="@{/SectionSearch}"
+					th:object="${ipc}" method="post" class="form-horizontal"
+					role="form">
+					<h3 class="form-signin-headings" th:text="SEARCHIPCCODES"></h3>
+					
+				<div class="form-group">
+						<div class="col-sm-9">
+						  <label th:if="${#fields.hasErrors('section')}" th:errors="*{section}"
+								class="validation-message"></label>
+						<input type="text" th:field="*{section}" placeholder="Section no."
+								class="form-control" /> 
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+						</div>
+					</div>
+					</form>
+					<form autocomplete="off" action="#" th:action="@{/KeywordSearch}"
+					th:object="${ipc}" method="post" class="form-horizontal"
+					role="form">
+					<div class="form-group">
+						<div class="col-sm-9"><h3>* Keywords:</h3>
+						  <label	th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}"
+								class="validation-message"></label>
+								 <select th:field="*{keyword}"  style="width: 252px;height: 32px; color:black;">
+	    	          <option th:each="keyword : ${allkeywords}" th:value="${keyword}" th:text="${keyword}">Keyword</option>
+	    	        
+	    	       </select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Submit</button>
+						</div>
+					</div>
+					 </form>
+					 </div>
+    </div>
+    </div>
+      <div class="container" class="form-horizontals" style=" margin-top:20px; margin-bottom:20px">
+					<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+			<table class="table table-striped" > 
+                <thead>
+                    <tr>
+                        <th width="10%">Section</th>
+                        <th width="20%">Keyword</th>
+                        <th width="30%">Code_Name</th>
+                        <th width="40%">Code_Description</th>
+                     <!--     <th>Select<th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "ipcCodes: ${ipccode}">
+                    
+                            <td th:text="${ipcCodes.section}"></td>
+                            <td th:text="${ipcCodes.keyword}"></td>
+                            <td th:text="${ipcCodes.codeName}"></td>
+                            <td th:text="${ipcCodes.codeDescription}"></td>
+                         
+                        </tr>
+                </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+   
+    
     <!-- for main component -->
       <footer class="py-5 bg-dark">
       <div class="container">

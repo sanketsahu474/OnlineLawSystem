@@ -111,15 +111,12 @@ public class AdminController {
 		        modelAndView.setViewName("/admin/UserInfo");
 		        return modelAndView;
 		    }*/
-		 
-   
-   
-			//------------------------------request for contact page by any user--------------------------------------------------	
+	//------------------------------request for contact page by any user--------------------------------------------------	
 	 @RequestMapping(value="/admin/Contact",method = RequestMethod.GET)
 		 public ModelAndView Contact() {
 		 ModelAndView modelAndView = new ModelAndView();
-		  modelAndView.setViewName("admin/Contact");
-	        return modelAndView;
+		  modelAndView.setViewName("/admin/Contact");
+	     return modelAndView;
 		 }
 	 //_____________________________________________Request for adding Ipc Codes_________________________________________________________
 		
@@ -159,7 +156,7 @@ public class AdminController {
 				}
 				return modelAndView;
 			}
-//_____________________________________________Request for adding Ipc Codes_________________________________________________________
+//_____________________________________________Request for Updating Ipc Codes_________________________________________________________
 			
 			
 			@RequestMapping(value="/admin/UpdateIpcCode", method = RequestMethod.GET)
@@ -180,7 +177,7 @@ public class AdminController {
 					if (ipcExists == null) {
 						bindingResult
 								.rejectValue("section", "error.ipc",
-										"There is no particular section existing in database please go to add option to add this section!!!");
+										"There is no particular Ipc section exist in database please go to add option to add this Ipc section!!!");
 					}
 					if (bindingResult.hasErrors()) {
 						
