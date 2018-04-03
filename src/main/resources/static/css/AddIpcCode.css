@@ -8,23 +8,15 @@ body {
     padding-top: 56px;
   }
 }
-
-.carousel-item {
-  height: 65vh;
-  min-height: 300px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.02);
 }
-
 .portfolio-item {
   margin-bottom: 30px;
 }
 .validation-message {
 	font-style: normal;
-	font-size: 14px;
+	font-size: 10px;
 	color: #000000;
 }
 .wrapper {    
@@ -33,15 +25,14 @@ body {
 }
 
 .form-horizontal {
-  max-width: 420px;
-  padding: 30px 38px 66px;
+  padding: 30px 38px 30px;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
+  background: #dee2e6
+  color: #ffcc99;
   }
 
 .form-signin-headings {
-  text-align:center;
+  text-align:left;
   margin-bottom: 30px;
 }
 
@@ -57,4 +48,14 @@ input[type="text"] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
+.site-footer, .page-wrap:after {
+  height: 142px; 
+}
+.site-footer {
+  background: orange;
+}
+.table-striped {
+  tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,0.2);
+  }
+}

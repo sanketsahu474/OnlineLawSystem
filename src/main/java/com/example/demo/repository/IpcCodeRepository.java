@@ -1,13 +1,16 @@
 package com.example.demo.repository;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.example.demo.model.IpcCode;;
 
-import com.example.demo.model.IpcCodes;;
 @Repository("ipccodeRepository")
-public interface IpcCodesRepository extends JpaRepository <IpcCodes, String> {
-	 IpcCodes findBySection(String section);
-	ArrayList<IpcCodes>  findByKeyword(String keyword);
+public interface IpcCodeRepository extends JpaRepository<IpcCode, String> {
+	
+	IpcCode findBySection(String section);
+
+	List<IpcCode> findByKeyword(String keyword);
+
+	void deleteBySection(String section);
 }

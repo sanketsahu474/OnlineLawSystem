@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<style>
+.password-verdict {
+	color: #000;
+}
+</style>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<title>update password</title>
+</head>
+<body>
+	<!--  <div sec:authorize="hasAuthority('CHANGE_PASSWORD_PRIVILEGE')">-->
+		<div class="col-md-4 col-md-offset-4">
+			<div class="container">
+				<div class="row">
+					<h1>Reset password</h1>
+					<form autocomplete="off" action="#" th:action="@{/reset}"
+						th:object="${user}" method="post">
+						<span th:utext="${errorMessage}"></span>
+						<div class="form-group">
+							<div class="col-sm-9">
+
+								<label th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}" class="validation-message"></label>
+								<h4 style="float: left; margin-right: 0px; width: 232px;">*
+									Password</h4>
+								<input type="password" th:field="*{password}"
+									placeholder="Password" class="form-control"
+									pattern="^[A-Za-z 0-9]{4}[A-Za-z 0-9]+$" style="width: 222px" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-9">
+								<label class="validation-message"
+									style="float: left; margin-right: 100px; margin-top: 30px;">*
+									Confirm password </label> <input type="password"
+									name="confirm_password" id="confirm_password"
+									class="form-control"
+									style="width: 222px; margin: left; margin-left: 0px; margin-top: 30px;"
+									required> <span id='message'></span>
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-9">
+								<button type="submit" id="btnSubmit"
+									class="btn btn-primary btn-block"
+									style="float: left; margin-right: 30px; width: 126px; margin-top: 20px;">Register
+									User</button>
+								<button type="reset" class="btn btn-md btn-danger btn-block"
+									style="width: 126px; margin-top: 20px;">Reset Details</button>
+							</div>
+						</div>
+						<span th:utext="${successMessage}"></span>
+
+					</form>
+					<script type="text/javascript">
+						$('#password, #confirm_password').on(
+								'keyup',
+								function() {
+									if ($('#password').val() == $(
+											'#confirm_password').val()) {
+										$('#message').html('Matching').css(
+												'color', 'green');
+									} else
+										$('#message').html('Not Matching').css(
+												'color', 'red');
+								});
+						$(function() {
+							$("#btnSubmit").click(
+									function() {
+										var password = $("#password").val();
+										var confirmPassword = $(
+												"#confirm_password").val();
+										if (password != confirmPassword) {
+											alert("Passwords do not match.");
+											return false;
+										}
+										return true;
+									});
+						});
+					</script>
+
+				</div>
+			</div>
+
+
+		</div>
+</body>
+
+</html>

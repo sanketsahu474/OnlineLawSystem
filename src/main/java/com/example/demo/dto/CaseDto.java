@@ -1,10 +1,10 @@
 package com.example.demo.dto;
 
-public class CasesDto {
+public class CaseDto {
 
 	private int caseId;
 	private String description;
-	public CasesDto(int caseId, String description) {
+	public CaseDto(int caseId, String description) {
 		super();
 		this.caseId = caseId;
 		this.description = description;

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>reset</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Account recovery</h1>
+		<br />
+		<div class="row">
+			<form th:action="@{/forgot}" th:object="${user}" method="post">
+				<label class="col-sm-1">Email Id</label> <span class="col-sm-5"><input
+					class="form-control" id="email" name="email" type="email" value=""
+					required="required" /></span>
+				<button class="btn btn-primary" type="submit" th:text="submit">Submit</button>
+			</form>
+		</div>
+		<span th:utext="${successMessage}"></span>
+		<div>
+			<a class="btn btn-default" th:href="@{/registration.html}"
+				th:text="Registration"
+				style="width: 200px; margin-top: 40px; float: left; margin-right: 40px;">Registration</a>
+			<a class="btn btn-default" th:href="@{/login}" th:text="Login"
+				style="width: 200px; margin-top: 40px;">Login</a>
+		</div>
+	</div>
+</body>
+
+</html>

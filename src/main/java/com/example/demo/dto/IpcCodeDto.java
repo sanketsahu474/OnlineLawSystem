@@ -1,12 +1,12 @@
 package com.example.demo.dto;
 
-public class IpcCodesDto {
+public class IpcCodeDto {
 
 	private String section;
 	private String keyword;
 	private String codeName;
 	private String codeDescription;
-	public IpcCodesDto(String section, String keyword, String codeName, String codeDescription) {
+	public IpcCodeDto(String section, String keyword, String codeName, String codeDescription) {
 		super();
 		this.section = section;
 		this.keyword = keyword;

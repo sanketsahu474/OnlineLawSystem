@@ -1,201 +1,297 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.example.demo.model.IpcCodes;
+import com.example.demo.model.Case;
+import com.example.demo.model.IpcCode;
 import com.example.demo.model.LawyerInfo;
 import com.example.demo.model.User;
-import com.example.demo.repository.IpcCodesRepository;
-import com.example.demo.repository.LawyerRepository;
+import com.example.demo.service.EmailService;
 import com.example.demo.service.UserService;
 
 @Controller
 public class ClientController {
 
-	
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
-	   IpcCodesRepository ipcCodesRepository;
-	@Autowired
-	LawyerRepository lawyerRepository;
-	
-	
-	@RequestMapping(value="/client/ClientHome", method = RequestMethod.GET)
-	public ModelAndView clienthome(){
+	private EmailService emailService;
+	private int users_id;
+	private String emailId;
+	ConstantList list = new ConstantList();
+
+	// Request for client home page
+	@RequestMapping(value = "/client/ClientHome", method = RequestMethod.GET)
+	public ModelAndView getClientHome() {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-		modelAndView.addObject("adminMessage","Content Available Only for Users with User Role");
+		modelAndView.addObject("userName",
+				"Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+		users_id = user.getId();
 		modelAndView.setViewName("client/ClientHome");
 		return modelAndView;
 
-}	
-	//List for keywords
-	private List<String> getKeywords() {
-	    List<String> list = new ArrayList<>();
-	    list.add("Introduction");
-	    list.add("General");
-	    list.add("Punishment");
-	    list.add("Exception");
-	    list.add("Private Defence");
-	    list.add("Abetment");
-	    list.add("Conspiracy");
-	    list.add("Offence Against the State");
-	    list.add("Offence Realated to Army");
-	    list.add("Offence Against Public Transquillity");
-	    list.add("Public Servant");
-	    list.add("Election");
-	    list.add("Contempt of Lawful Athority");
-	    list.add("Offence Against Public Justice");
-	    list.add("Coins");
-	    list.add("Stamp");
-	    list.add("Weights and Measures");
-	    list.add("Offence Affecting Public Safety");
-	    list.add("Religion");
-	    list.add("Affecting Life");
-	    list.add("Miscarriage");
-	    list.add("Hurt");
-	    list.add("Wrongful Confinement");
-	    list.add("Criminal Force and Assault");
-	    list.add("Kidnapping");
-	    list.add("Slaves");
-	    list.add("Extortion");
-	    list.add("Robbery and Dacoity");
-	    list.add("Of Criminal Misappropriation of Property");
-	    list.add("Of Criminal Breach of Trust");
-	    list.add("Of the Receiving of Stolen Property");
-	    list.add("Of Cheating");
-	    list.add("Of Fraudulent Deeds and Dispositions of Property");
-	    list.add("Of Mischief");
-	    list.add("Of Criminal Trespass");
-	    list.add("OF OFFENCES RELATING TO DOCUMENTS AND TO PROPERTY MARKS");
-	    list.add("Of Property and Other Marks");
-	    list.add("Of Currency-Notes and Bank-Notes");
-	    list.add("OF THE CRIMINAL BREACH OF CONTRACTS OF SERVICE");
-	    list.add("OF OFFENCES RELATING TO MARRIAGE");
-	    list.add("OF CRUELTY BY HUSBAND OR RELATIVES OF HUSBAND");
-	    list.add("OF DEFAMATION");
-	    list.add("OR CRIMINAL INTIMIDATION , INSULTAND ANNOYANCE");
-	    list.add("OF ATTEMPTS OF COMMIT OFFENCES");
-	    return list;
-	}
-	private List<String> getCourt() {
-	    List<String> lists = new ArrayList<>();
-	    lists.add("Supreme");
-	    lists.add("High");
-	    lists.add("District");
-	    return lists;
 	}
 
-	private List<String> getType() {
-	    List<String> list = new ArrayList<>();
-	    list.add("Criminal");
-	    list.add("Corporat");
-	    list.add("Tax");
-	    list.add("RealEstate");
-	    list.add("Immigration");
-	    list.add("PersonalInjury");
-	    return list;
+	// Edit user info
+	@RequestMapping(value = { "/client/UpdateInfo" }, method = RequestMethod.GET)
+	public ModelAndView getUpdateUser() {
+		ModelAndView modelAndView = new ModelAndView();
+		User user = userService.findUserById(users_id);
+		emailId = user.getEmail();
+		modelAndView.addObject("user", user);
+		modelAndView.addObject("allRoles", list.getRoles());
+		modelAndView.setViewName("/client/UpdateInfo");
+		return modelAndView;
 	}
 
-	//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Request for Client $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-		
-		//-------------------------------------Request for search IPC codes by user-----------------------------------------
-		 
-	 @RequestMapping(value = "/client/SearchIpcCode", method = RequestMethod.GET)
-	    public ModelAndView getSearchIpcCode(){
-	    	ModelAndView modelAndView = new ModelAndView();
-	    	IpcCodes ipc = new IpcCodes();
-			modelAndView.addObject("ipc", ipc);
-	    	modelAndView.addObject("allkeywords",getKeywords());
-	        modelAndView.addObject("ipccode",ipcCodesRepository .findAll());
-	        modelAndView.setViewName("/client/SearchIpcCode");
-	        return modelAndView;
-	    }
-	 
+	@RequestMapping(value = "/client/UpdateInfo", method = RequestMethod.POST)
+	public ModelAndView setUpdateUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("allRoles", list.getRoles());
+		if (user.getEmail() == emailId)
+			;
+		User userExists = userService.findUserByEmail(user.getEmail());
+		if (!emailId.equalsIgnoreCase(user.getEmail())) {
+			if (userExists != null) {
+				bindingResult.rejectValue("email", "error.user",
+						"There is already a user registered with the email provided");
+			}
+		}
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("client/UpdateInfo");
+		} else {
+			userService.updateUser(user, users_id);
+			modelAndView.addObject("successMessage", "user has been updated.");
+			modelAndView.addObject("user", user);
+			modelAndView.addObject("allRoles", list.getRoles());
+			modelAndView.setViewName("client/UpdateInfo");
+		}
+		return modelAndView;
+	}
+
+	// Request by user for searching IPC codes
+
+	@RequestMapping(value = "/client/SearchIpcCode", method = RequestMethod.GET)
+	public ModelAndView getSearchIpcCode() {
+		ModelAndView modelAndView = new ModelAndView();
+		IpcCode ipc = new IpcCode();
+		modelAndView.addObject("ipc", ipc);
+		modelAndView.addObject("allkeywords", list.getKeywords());
+		modelAndView.addObject("ipccode", userService.findAllIpc());
+		modelAndView.setViewName("/client/SearchIpcCode");
+		return modelAndView;
+	}
+
+	// Search on the basis of section no.
 	@RequestMapping(value = "/SectionSearch", method = RequestMethod.POST)
-	 public ModelAndView sectionSearchIpcCode(@RequestParam("section") String section) {
-		 ModelAndView modelAndView = new ModelAndView();
-		 IpcCodes ipc = new IpcCodes();
-		 modelAndView.addObject("ipc", ipc);
-		 modelAndView.addObject("allkeywords",getKeywords());
-		
-		 modelAndView.addObject("ipccode",ipcCodesRepository.findBySection(section));
-		 modelAndView.setViewName("/client/SearchIpcCode");
-		 return modelAndView;
-	 }
-	
+	public ModelAndView sectionSearchIpcCode(@RequestParam("section") String section) {
+		ModelAndView modelAndView = new ModelAndView();
+		IpcCode ipc = new IpcCode();
+		modelAndView.addObject("ipc", ipc);
+		modelAndView.addObject("allkeywords", list.getKeywords());
+
+		modelAndView.addObject("ipccode", userService.findBySection(section));
+		modelAndView.setViewName("/client/SearchIpcCode");
+		return modelAndView;
+	}
+
+	// Search on the basis of keywords
 	@RequestMapping(value = "/KeywordSearch", method = RequestMethod.POST)
 	public ModelAndView keywordSearchIpcCode(@RequestParam("keyword") String keyword) {
-		 ModelAndView modelAndView = new ModelAndView();
-		 IpcCodes ipc = new IpcCodes();
-		 modelAndView.addObject("ipc", ipc);
-		 modelAndView.addObject("allkeywords",getKeywords());
-		
-		 modelAndView.addObject("ipccode",ipcCodesRepository.findByKeyword(keyword));
-		 modelAndView.setViewName("/client/SearchIpcCode");
-		 return modelAndView;
-	 }
-	
-		// ------------------------------------Request for searching lawyers by user ----------------------------------------
-	 @RequestMapping(value = "/client/SearchLawyer", method = RequestMethod.GET)
-	    public ModelAndView getSearchLawyer(){
-	    	ModelAndView modelAndView = new ModelAndView();
-	    	LawyerInfo law = new LawyerInfo();
-			modelAndView.addObject("law", law);
-			modelAndView.addObject("allCourts",getCourt());
-			modelAndView.addObject("allTypes",getType());
-	        modelAndView.setViewName("/client/SearchLawyer");
-	        
-	        return modelAndView;
-	    }
-	
-	 @RequestMapping(value = "/client/SearchLawyers", method = RequestMethod.POST)
-		public ModelAndView LawyerSearch(@RequestParam("court") String court,@RequestParam("type") String type) {
-			 ModelAndView modelAndView = new ModelAndView();
-			 LawyerInfo law = new LawyerInfo();
-			 modelAndView.addObject("law", law);
-			 modelAndView.addObject("allCourts",getCourt());
-				modelAndView.addObject("allTypes",getType());
-			 modelAndView.addObject("lawyer",lawyerRepository.findByCourtAndType(court,type));
-			 modelAndView.setViewName("/client/SearchLawyers");
-			 return modelAndView;
-		 }
-		
-		// ------------------------------------Request for clientHome by user ----------------------------------------
-		 @RequestMapping("/ClientHome")
-		 public String ClientHome() {
-			 return "client/ClientHome";
-		 }
-		// ------------------------------------------------------Request for cases by user ----------------------------------------
-		 @RequestMapping("/Cases")
-		 public String Cases() {
-			 return "client/Cases";
-		 }
-		 
-		// ------------------------------------------------------Request for fill details by user ----------------------------------------
-		 @RequestMapping("/FillDetail")
-		 public String FillDetail() {
-			 return "client/FillDetail";
-		 }
-		 
-			// ------------------------------------------------------Request for Contacting client by user ----------------------------------------
-		 @RequestMapping("/ContactClient")
-		 public String ContactClient() {
-			 return "client/ContactClient";
-		 }
+		ModelAndView modelAndView = new ModelAndView();
+		IpcCode ipc = new IpcCode();
+		modelAndView.addObject("ipc", ipc);
+		modelAndView.addObject("allkeywords", list.getKeywords());
+
+		modelAndView.addObject("ipccode", userService.findByKeyword(keyword));
+		modelAndView.setViewName("/client/SearchIpcCode");
+		return modelAndView;
+	}
+
+	// Request by user for searching lawyers
+	@RequestMapping(value = "/client/SearchLawyer", method = RequestMethod.GET)
+	public ModelAndView getLawyerSearch() {
+		ModelAndView modelAndView = new ModelAndView();
+		LawyerInfo law = new LawyerInfo();
+		modelAndView.addObject("law", law);
+		modelAndView.addObject("allCourts", list.getCourt());
+		modelAndView.addObject("allTypes", list.getType());
+		modelAndView.setViewName("/client/SearchLawyer");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/client/SearchLawyers", method = RequestMethod.POST)
+	public ModelAndView setLawyerSearch(@RequestParam("court") String court, @RequestParam("type") String type) {
+		ModelAndView modelAndView = new ModelAndView();
+		LawyerInfo law = new LawyerInfo();
+		modelAndView.addObject("law", law);
+		modelAndView.addObject("allCourts", list.getCourt());
+		modelAndView.addObject("allTypes", list.getType());
+		modelAndView.addObject("lawyer", userService.findByCourtAndType(court, type));
+		modelAndView.setViewName("/client/SearchLawyers");
+		return modelAndView;
+	}
+
+	// Request by user for cases
+
+	@RequestMapping(value = "/client/Cases", method = RequestMethod.GET)
+	public ModelAndView getCases() {
+		ModelAndView modelAndView = new ModelAndView();
+		User userid = userService.findByIds(users_id);
+		modelAndView.addObject("case", userService.findByUsers(userid));
+		modelAndView.setViewName("/client/Cases");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/client/Cases", method = RequestMethod.POST)
+	public ModelAndView setCases(@Valid @ModelAttribute Case cases, BindingResult bindingResult,
+			@RequestParam("email") String email) {
+		ModelAndView modelAndView = new ModelAndView();
+		User userid = userService.findByIds(users_id);
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("/client/Cases");
+		} else {
+			if (email != null)
+				emailService.sendMail(email, "This case has been offered to you ", cases.getDescription());
+			userService.saveCase(cases, users_id);
+			modelAndView.addObject("cases", new Case());
+			modelAndView.addObject("case", userService.findByUsers(userid));
+			modelAndView.setViewName("/client/Cases");
+		}
+		return modelAndView;
+	}
+
+	// Request for deleting the case
+
+	@RequestMapping(value = { "/delete_case" }, method = RequestMethod.GET)
+	public ModelAndView deleteCase(@RequestParam(name = "caseId") int caseid) {
+		ModelAndView modelAndView = new ModelAndView();
+		User userid = userService.findByIds(users_id);
+		userService.deletecaseByCaseId(caseid);
+		Case cases = new Case();
+		modelAndView.addObject("cases", cases);
+
+		modelAndView.addObject("case", userService.findByUsers(userid));
+		modelAndView.setViewName("/client/Cases");
+		return modelAndView;
+	}
+
+	// Request for editing the case
+
+	@RequestMapping(value = { "/edit_case" }, method = RequestMethod.GET)
+	public ModelAndView getUpdateCase(@RequestParam(name = "caseId") int caseid) {
+		ModelAndView modelAndView = new ModelAndView();
+		Case cases = userService.findcaseByCaseid(caseid);
+		modelAndView.addObject("cases", cases);
+		modelAndView.addObject("allcasetypes", list.getCaseType());
+
+		modelAndView.setViewName("/client/UpdateCase");
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/client/UpdateCase", method = RequestMethod.POST)
+	public ModelAndView setUpdateCase(@Valid @ModelAttribute Case cases, BindingResult bindingResult,
+			@RequestParam("email") String email) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+
+			modelAndView.setViewName("/client/Cases");
+		} else {
+
+			if (email != null)
+				emailService.sendMail(email, "This case has been offered to you ", cases.getDescription());
+
+			userService.saveCase(cases, users_id);
+			modelAndView.addObject("cases", new Case());
+			modelAndView.addObject("allcasetypes", list.getCaseType());
+			modelAndView.setViewName("/client/UpdateCase");
+		}
+		return modelAndView;
+	}
+
+	// Request for adding new case
+
+	@RequestMapping(value = "/client/AddCase", method = RequestMethod.GET)
+	public ModelAndView getAddCases() {
+		ModelAndView modelAndView = new ModelAndView();
+		Case cases = new Case();
+		modelAndView.addObject("cases", cases);
+		modelAndView.addObject("allcasetypes", list.getCaseType());
+		modelAndView.setViewName("/client/AddCase");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/client/AddCase", method = RequestMethod.POST)
+	public ModelAndView setAddCases(@Valid @ModelAttribute Case cases, BindingResult bindingResult,
+			@RequestParam("email") String email) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+
+			modelAndView.setViewName("/client/Cases");
+		} else {
+
+			if (email != null)
+				emailService.sendMail(email, "This case has been offered to you ", cases.getDescription());
+
+			userService.saveCase(cases, users_id);
+			modelAndView.addObject("cases", new Case());
+			modelAndView.addObject("allcasetypes", list.getCaseType());
+			modelAndView.setViewName("/client/AddCase");
+		}
+		return modelAndView;
+	}
+
+	// Request for sending mail to all in particular field
+
+	@RequestMapping(value = "/sendToAll", method = RequestMethod.POST)
+	public ModelAndView sendToAll(@Valid @ModelAttribute Case cases, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		User userid = userService.findByIds(users_id);
+
+		/*
+		 * if (bindingResult.hasErrors()) {
+		 * modelAndView.addObject("allcasetypes",getCaseType());
+		 * modelAndView.setViewName("/client/Cases"); } else {
+		 */
+		List<String> emails = userService.findByTypes(cases.getCaseType());
+		// String[] email = emails.toArray(new String[emails.size()]);
+		String[] email = new String[emails.size() + 1];
+		email[0] = "sanketsahu474@gmail.com";
+		for (int i = 1; i < emails.size(); i++) {
+			email[i] = emails.get(i - 1);
+		}
+
+		emailService.sendMails(email, "This case has been offered to you ", cases.getDescription());
+		userService.saveCase(cases, users_id);
+		modelAndView.addObject("cases", new Case());
+		modelAndView.addObject("allcasetypes", list.getCaseType());
+		modelAndView.addObject("case", userService.findByUsers(userid));
+		modelAndView.setViewName("/client/Cases");
+		// }
+		return modelAndView;
+	}
+
+	// Request for Contacting client by user
+	@RequestMapping(value = "/client/ClientChat", method = RequestMethod.GET)
+	public ModelAndView ClientChat() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/client/ClientChat");
+		return modelAndView;
+	}
 
 }

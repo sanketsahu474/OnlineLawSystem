@@ -23,33 +23,26 @@
 
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
+      <div class="container" style="margin-left:0px;
+	margin-right:0px; max-width:1800px;">
         <a class="navbar-brand" href="/admin/AdminHome">Law System</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-           <li class="nav-item">
-              <a class="nav-link" href="/admin/AddIpcCode">Add IPC Codes</a> 
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/ShowIpcCodes">IPC codes</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/UpdateIpcCode">Update IPC Codes</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/UserInfo">Check User Details</a>
-    </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/Contact">Contact Us</a>
-              </li>
-<!-- apply it here -->          
+              <a class="nav-link" href="/admin/UserInfo">User details</a>
+    </li>        
 		 <li class="nav-item">
 		 <form th:action="@{/logout}" method="get">
 			<button class="btn btn-md btn-danger btn-block" name="registration"
 				type="Submit">Logout</button>
 		</form> 
 		</li>
-   <!--     <a class="nav-link" href="contact.html">Logout</a> -->  
           </ul>
         </div>
       </div>
@@ -99,7 +92,7 @@
     <!-- Page Content -->
     <div class="container">
 
-      <h1 class="my-4">Welcome to Law System</h1>
+      <h1 class="my-4"><span th:utext="${userName}"></span></h1>
 
       <!-- Marketing Icons Section -->
       <div class="row">
@@ -137,9 +130,6 @@ Hindu law has been codified and Islamic law is based on authoritative commentari
             
           </div>
         </div>
-      
-      <!-- /.row -->
-
       <h2>Indian Courts</h2>
 
       <div class="row">
@@ -215,17 +205,12 @@ The power,jurdiction and procedure of these forum is generally governed by the s
       </div>
       </div>
       </div>
-      <!-- /.row -->
-
       <hr>
-     
-  <!-- for main component -->
-      <footer class="py-5 bg-dark">
+     <!-- <footer class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Online Law Sysetm &copy;  Website 2018</p>
       </div>
-      <!-- /.container -->
-    </footer>
+    </footer>-->
 
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>

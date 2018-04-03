@@ -1,232 +1,292 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Home</title>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" />
+</head>
+<body>
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container"
+			style="margin-left: 0px; margin-right: 0px; max-width: 1800px;">
+			<a class="navbar-brand" href="/lawyer/LawyerHome">Law System</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/SearchIpc">Search IPC code</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/Details">Fill details</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/ShowCases">Show cases</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/LawyerChat">Chat</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/UpdateInfo">Update account detail</a></li>
+					<li class="nav-item">
+						<form th:action="@{/logout}" method="get">
+							<button class="btn btn-md btn-danger btn-block"
+								name="registration" type="Submit">Logout</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-  <head>
+	<header>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<!-- Slide One - Set the background image for this slide in the line below -->
+				<div class="carousel-item active"
+					th:style="'padding-left: 26px; background-image: url(' + @{/images/justice.jpg}+');'">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<!-- Slide Two - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					th:style="'padding-left: 26px; background-image: url(' + @{/images/table.jpg} +');'">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<!-- Slide Three - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					th:style="'padding-left: 26px; background-image: url(' + @{/images/india_flag_emblem-colombotelegraph.jpg} +');'">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<div class="carousel-item"
+					th:style="'padding-left: 26px; background-image: url(' + @{/images/courts.jpg} +');'">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</header>
 
-    <title>Home</title>
+	<!-- Page Content -->
+	<div class="container">
 
-    <!-- Bootstrap core CSS -->
- 
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" /> 
+		<h1 class="my-4">
+			<span th:utext="${userName}"></span>
+		</h1>
 
-    <!-- Custom styles for this template -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" /> 
-  </head>
+		<!-- Marketing Icons Section -->
+		<div class="row">
+			<div class="col-lg-12 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Indian law System:Quick Facts</h4>
+					<div class="card-body">
+						<p class="card-text">
+							India became an independent democratic republic in 1947 and its
+							constitution, which came into force on 26th November 1949, is the
+							supreme law.India has a common law legal system whose
+							infrastructure bears the influence of British colonial rule. The
+							constitution is based on the Government of India Act 1935 passed
+							by British Parliament. The Indian constitution lays out a federal
+							Union of 28 States, 6 union territories and 1 national capital
+							territory. The Union and States have separate executive and
+							legislative branches, whereas the territories are ruled by the
+							national government.Law generated by the Union is superior to
+							that of the States. <br> <br> The nominal head of the
+							Union executive is an elected President, but the Prime Minister,
+							leader of the majority party and head of the Union Council of
+							Ministers, is more politically powerful. India has a bicameral
+							Parliament whose upper house is the Council of States (Rajya
+							Sabha) and whose lower house is the House of People (Lok
+							Sabha).The State executive is headed by a Governor, and while
+							most have a unicameral legislative body called the Legislative
+							Assembly, some are bicameral with a Legislative Council as well.
 
-  <body>
+							<br> <br> Apart from the English influence, personal
+							laws are frequently based on Hindu and Islamic law. Hindu law has
+							been codified and Islamic law is based on authoritative
+							commentaries and precedents. (The LawBod has works dealing with
+							these great religious legal systems with shelf marks starting
+							Ancient Hindu and Islamic).
 
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="LawyerHome.html">Law System</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/SearchIpc">Search IpcCode</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/lawyer/Details">Fill Details</a>
-    </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ContactLawyer">Contact Us</a>
-              </li>
-<!-- apply it here -->          
-		 <li class="nav-item">
-		 <form th:action="@{/logout}" method="get">
-			<button class="btn btn-md btn-danger btn-block" name="registration"
-				type="Submit">Logout</button>
-		</form> 
-		</li>
-   <!--     <a class="nav-link" href="contact.html">Logout</a> -->  
-          </ul>
-        </div>
-      </div>
-    </nav>
+						</p>
+					</div>
 
-    <header>
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" th:style="'padding-left: 26px; background-image: url(' + @{/images/justice.jpg}+');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item"th:style="'padding-left: 26px; background-image: url(' + @{/images/table.jpg} +');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/india_flag_emblem-colombotelegraph.jpg} +');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-	<div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/courts.jpg} +');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
+				</div>
+			</div>
 
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </header>
+			<!-- /.row -->
 
-    <!-- Page Content -->
-    <div class="container">
+			<h2>Indian Courts</h2>
 
-      <h1 class="my-4">Welcome to Law System</h1>
+			<div class="row">
+				<div class="col-lg-6 col-sm-6 portfolio-item">
+					<div class="card h-100">
+						<a href="http://supremecourtofindia.nic.in/"><img
+							th:src="@{/images/supreme.jpg}" class="card-img-top" alt=""></a>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="http://supremecourtofindia.nic.in/">Supreme Court</a>
+							</h4>
+							<p class="card-text">The supreme court of India is highest or
+								the apes jurdiction forum and final court of appeal as
+								established.The supreme court enjoy the writ, appelate,original
+								and advisory jurdiction.As the final court of appeal of the
+								country, it takes up appeals primarily against verdicts of the
+								High Courts of various states of the Union and other courts and
+								tribunals. It safeguards fundamental rights of citizens and
+								settles disputes between various governments in the country. As
+								an advisory court, it hears matters which may specifically be
+								referred to it under the Constitution by the President of India.
+								It also may take cognisance of matters on its own (or 'suo
+								moto'), without anyone drawing its attention to them. The law
+								declared by the Supreme Court becomes binding on all courts
+								within India and also by the union and state governments.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 portfolio-item">
+					<div class="card h-100">
+						<a href="#"><img class="card-img-top"
+							th:src="@{/images/high.jpg}" alt=""></a>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="#">High Court</a>
+							</h4>
+							<p class="card-text">High court are the highest court of
+								state or union territories level. These courts have jurdiction
+								over state or union territories.The High Courts are the
+								principal civil courts of original jurisdiction in each state
+								and union territory. However, a High Court exercises its
+								original civil and criminal jurisdiction only if the subordinate
+								courts are not authorized by law to try such matters for lack of
+								pecuniary, territorial jurisdiction. High courts may also enjoy
+								original jurisdiction in certain matters if so designated
+								specifically in a state or federal law. However, the work of
+								most High Courts primarily consists of appeals from lower courts
+								and writ petitions in terms of Article 226 of the constitution.
+								Writ jurisdiction is also original jurisdiction of High Court.
+								The precise territorial jurisdiction of each High Court varies.
+								The appeal order is the following: tehsil-kotwali-criminal/civil
+								courts - district - high court - supreme court.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 portfolio-item">
+					<div class="card h-100">
+						<a href="http://indiancourts.nic.in/districtcourt.html"><img
+							class="card-img-top" th:src="@{/images/district.jpg}" alt=""></a>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="http://indiancourts.nic.in/districtcourt.html">District/Session
+									Court</a>
+							</h4>
+							<p class="card-text">Generally each state is divided into
+								judicial district presided over by a district and session judge.
+								He is known as district judge when preside over a civil case and
+								a session judge when preside over a criminal case.The District
+								Courts (Hindi: ज़िला न्यायालय) of India are the district courts
+								of the State governments in India for every district or for one
+								or more districts together taking into account the number of
+								cases, population distribution in the district. They administer
+								justice in India at a district level.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 portfolio-item">
+					<div class="card h-100">
+						<a href="#"><img class="card-img-top"
+							th:src="@{/images/tribunal.png}" alt=""></a>
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="#">Various Tribunal and Appelate Boards</a>
+							</h4>
+							<p class="card-text">The Indian judicial system also consist
+								of various tribunal and appelate board constituted for any
+								specific purpose. The power,jurdiction and procedure of these
+								forum is generally governed by the stautes constituting them.
+								The Central Administrative Tribunal finds its origin in the
+								Constitution of India by way of Article 323A, which laid the
+								foundation for the Administrative Tribunals Act, 1985. This was
+								established to adjudicate disputes relating to recruitments and
+								conditions of service of recruited persons to various posts
+								under the Union Government or other local governments as per
+								under the relevant government, be it the union or the state or
+								any local authority. Besides these recruited persons, it has
+								within its ambit 45 other organizations which fall within its
+								jurisdiction to try those disputes. However, it does not apply
+								to Paramilitary forces, any Armed Forces, Secretarial Staff of
+								both Houses of Parliament or of the State Legislatures.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
 
-      <!-- Marketing Icons Section -->
-      <div class="row">
-        <div class="col-lg-12 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Indian law System:Quick Facts</h4>
-            <div class="card-body">
-              <p class="card-text">India became an independent democratic republic in 1947 and its constitution, which came into force on 26th November 1949,
-is the supreme law.India has a common law legal system whose infrastructure bears the influence of British colonial rule. 
-The constitution is based on the Government of India Act 1935 passed by British Parliament. 
-The Indian constitution lays out a federal Union of 28 States, 6 union territories and 1 national capital territory. 
-The Union and States have separate executive and legislative branches, whereas the territories are ruled by the national
-government.Law generated by the Union is superior to that of the States.
+			<!-- Features Section -->
+			<div class="row">
+				<div class="col-lg-6">
+					<h2>Some Important Links</h2>
+					<ul>
+						<li><strong>Official Portal for Indian Law</strong></li>
+						<a href="http://goidirectory.nic.in/index.php"><li>India
+								Government Directory</li></a>
+						<a href="http://www.egazette.nic.in/Default.aspx"><li>India
+								e-Gazette (by subscription only)</li></a>
+						<a href="http://www.judis.nic.in/">
+							<li>Judgement Information System (Judgements of the Supreme
+								Court of India)</li>
+						</a>
+					</ul>
+				</div>
+				<div class="col-lg-6">
+					<img class="img-fluid rounded" th:src="@{/images/lawInstitute.jpg}"
+						alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.row -->
 
- 
-<br>
-<br>
-
-The nominal head of the Union executive is an elected President, but the Prime Minister, leader of the majority party and 
-head of the Union Council of Ministers, is more politically powerful. India has a bicameral Parliament whose upper house 
-is the Council of States (Rajya Sabha) and whose lower house is the House of People (Lok Sabha).The State executive is headed
-by a Governor, and while most have a unicameral legislative body called the Legislative Assembly, some are bicameral with a 
-Legislative Council as well.
-
- <br>
- <br>
-
- 
-Apart from the English influence, personal laws are frequently based on Hindu and Islamic law.
-Hindu law has been codified and Islamic law is based on authoritative commentaries and precedents.
-(The LawBod has works dealing with these great religious legal systems with shelf marks starting Ancient Hindu and Islamic).
-
-</p>
-            </div>
-            
-          </div>
-        </div>
-      
-      <!-- /.row -->
-
-      <h2>Indian Courts</h2>
-
-      <div class="row">
-        <div class="col-lg-6 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="http://supremecourtofindia.nic.in/"><img  th:src="@{/images/supreme.jpg}" class="card-img-top" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://supremecourtofindia.nic.in/">Supreme Court</a>
-              </h4>
-              <p class="card-text">The supreme court of India is highest or the apes jurdiction forum and final court of appeal
-as established.The supreme court enjoy the writ, appelate,original and advisory jurdiction.As the final court of appeal of the country, it takes up appeals primarily against verdicts of the High Courts of various states of the Union and other courts and tribunals. It safeguards fundamental rights of citizens and settles disputes between various governments in the country. As an advisory court, it hears matters which may specifically be referred to it under the Constitution by the President of India. It also may take cognisance of matters on its own (or 'suo moto'), without anyone drawing its attention to them. The law declared by the Supreme Court becomes binding on all courts within India and also by the union and state governments.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" th:src="@{/images/high.jpg}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">High Court</a>
-              </h4>
-              <p class="card-text">High court are the highest court of state or union territories level.
- These courts have jurdiction over state or union territories.The High Courts are the principal civil courts of original jurisdiction in each state and union territory. However, a High Court exercises its original civil and criminal jurisdiction only if the subordinate courts are not authorized by law to try such matters for lack of pecuniary, territorial jurisdiction. High courts may also enjoy original jurisdiction in certain matters if so designated specifically in a state or federal law.
-
-However, the work of most High Courts primarily consists of appeals from lower courts and writ petitions in terms of Article 226 of the constitution. Writ jurisdiction is also original jurisdiction of High Court. The precise territorial jurisdiction of each High Court varies. The appeal order is the following: tehsil-kotwali-criminal/civil courts - district - high court - supreme court.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="http://indiancourts.nic.in/districtcourt.html"><img class="card-img-top" th:src="@{/images/district.jpg}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="http://indiancourts.nic.in/districtcourt.html">District/Session Court</a>
-              </h4>
-              <p class="card-text">Generally each state is divided into judicial district presided over by a district and session judge.
-He is known as district judge when preside over a civil case and a session judge when preside over a criminal case.The District Courts (Hindi: ज़िला न्यायालय) of India are the district courts of the State governments in India for every district or for one or more districts together taking into account the number of cases, population distribution in the district. They administer justice in India at a district level.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" th:src="@{/images/tribunal.png}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Various Tribunal and Appelate Boards</a>
-              </h4>
-              <p class="card-text">The Indian judicial system also consist of various tribunal and appelate board constituted for any specific purpose.
-The power,jurdiction and procedure of these forum is generally governed by the stautes constituting them. The Central Administrative Tribunal finds its origin in the Constitution of India by way of Article 323A, which laid the foundation for the Administrative Tribunals Act, 1985. This was established to adjudicate disputes relating to recruitments and conditions of service of recruited persons to various posts under the Union Government or other local governments as per under the relevant government, be it the union or the state or any local authority. Besides these recruited persons, it has within its ambit 45 other organizations which fall within its jurisdiction to try those disputes. However, it does not apply to Paramilitary forces, any Armed Forces, Secretarial Staff of both Houses of Parliament or of the State Legislatures.  </p>
-            </div>
-          </div>
-        </div>
-        </div>
-      <!-- /.row -->
-
-      <!-- Features Section -->
-      <div class="row">
-        <div class="col-lg-6">
-          <h2>Some Important Links</h2>
-          <ul>
-            <li>
-              <strong>Official Portal for Indian Law</strong>
-            </li>
-            <a href="http://goidirectory.nic.in/index.php"><li>India Government Directory</li></a>
-          <a href="http://www.egazette.nic.in/Default.aspx" ><li>India e-Gazette (by subscription only)</li></a>
-           <a href="http://www.judis.nic.in/"> <li>Judgement Information System (Judgements of the Supreme Court of India)</li></a>
-          </ul>
-        </div>
-        <div class="col-lg-6">
-          <img class="img-fluid rounded" th:src="@{/images/lawInstitute.jpg}" alt="">
-        </div>
-      </div>
-      </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-       <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Online Law Sysetm &copy;  Website 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+	<hr>
+	<!-- <footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Online Law Sysetm &copy;Website 2018</p>
+		</div>
+	</footer> -->
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
-      <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-  </body>
+</body>
 
 </html>

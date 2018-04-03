@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>SearchIpcCode</title>
+
+<!-- Bootstrap core CSS -->
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/SearchIpcCodes.css}" />
+
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container"
+			style="margin-left: 0px; margin-right: 0px; max-width: 1800px;">
+			<a class="navbar-brand" href="/lawyer/LawyerHome">Law System</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/SearchIpc">Search IPC Codes</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/Details">Fill details</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/ShowCases">Show cases</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/LawyerChat">Chat</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/UpdateInfo">Update account detail</a></li>
+					<li class="nav-item">
+						<form th:action="@{/logout}" method="get">
+							<button class="btn btn-md btn-danger btn-block" name="logout"
+								type="Submit">Logout</button>
+						</form>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container"
+		style="margin-right: 100px; margin-top: 20px; margin-bottom: 20px">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+
+				<form autocomplete="off" action="#" th:action="@{/lawyer/ShowCases}"
+					th:object="${cases}" method="post" class="form-horizontal"
+					role="form" style="width: 1200px;">
+					<div class="form-group">
+						<div class="col-sm-9">
+							<h4>Case type</h4>
+							<label th:if="${#fields.hasErrors('caseType')}"
+								th:errors="*{caseType}" class="validation-message"></label> <select
+								th:field="*{caseType}"
+								style="width: 222px; float: left; margin-right: 30px; height: 38px;">
+								<option th:each="caseType : ${allcasetypes}"
+									th:value="${caseType}" th:text="${caseType}">Case
+									type</option>
+
+							</select>
+
+							<button type="submit" class="btn btn-primary btn-block"
+								style="width: 100px; margin-left: 20px;">Apply</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container" class="form-horizontals"
+		style="margin-top: 20px; margin-bottom: 20px">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+				<table class="table table-striped" style="width: 1750px;">
+					<thead>
+						<tr>
+							<th width="10%">Case type</th>
+							<th width="80%">Case description</th>
+							<th width="10%">Contact details</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cases: ${case}">
+							<td th:text="${cases.caseType}"></td>
+							<td th:text="${cases.description}"></td>
+							<td th:text="${cases.contact}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- <footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Online Law Sysetm &copy;Website 2018</p>
+		</div>
+	</footer> -->
+	<script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

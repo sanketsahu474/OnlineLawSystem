@@ -3,214 +3,217 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>Details</title>
+<title>Details</title>
 
-    <!-- Bootstrap core CSS -->
+<!-- Bootstrap core CSS -->
 
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" /> 
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
 
-    <!-- Custom styles for this template -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/Details.css}" />
-		<!-- Latest compiled and minified CSS -->
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/Details.css}" />
+<!-- Latest compiled and minified CSS -->
 
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/LawyerHome">Law System</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/SearchIpc">Search IpcCode</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/lawyer/Details">Fill Details</a>
-    </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ContactLawyer">Contact Us</a>
-              </li>
-<!-- apply it here -->          
-		 <li class="nav-item">
-		 <form th:action="@{/logout}" method="get">
-			<button class="btn btn-md btn-danger btn-block" name="registration"
-				type="Submit">Logout</button>
-		</form> 
-   <!--     <a class="nav-link" href="contact.html">Logout</a> -->  
-          </ul>
-        </div>
-      </div>
-    </nav>
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container"
+			style="margin-left: 0px; margin-right: 0px; max-width: 1800px;">
+			<a class="navbar-brand" href="/lawyer/LawyerHome">Law System</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/SearchIpc">Search IPC codes</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/Details">Fill details</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/ShowCases">Show cases</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/LawyerChat">Chat</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/lawyer/UpdateInfo">Update account detail</a></li>
+					<!-- apply it here -->
+					<li class="nav-item">
+						<form th:action="@{/logout}" method="get">
+							<button class="btn btn-md btn-danger btn-block" name="logout"
+								type="Submit">Logout</button>
+						</form> <!--     <a class="nav-link" href="contact.html">Logout</a> -->
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <header>
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" th:style="'padding-left: 26px; background-image: url(' + @{/images/justice.jpg}+');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item"th:style="'padding-left: 26px; background-image: url(' + @{/images/table.jpg} +');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-          <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/india_flag_emblem-colombotelegraph.jpg} +');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
-	<div class="carousel-item" th:style="'padding-left: 26px; background-image: url(' + @{/images/courts.jpg} +');'">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-          </div>
 
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </header>
-<div class="container" style="margin-right:200px; margin-top:20px; margin-bottom:20px">
+	<div class="container"
+		style="margin-right: 200px; margin-top: 20px; margin-bottom: 20px; margin-left: 0px;">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-4">
-				<form autocomplete="off" action="#" th:action="@{/lawyer/Details}" th:object="${lawyer}" method="post" class="form-horizontal" role="form">
-					<h3 class="form-signin-headings" th:text="LawyerDetails"></h3>
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-						<label th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"
-								class="validation-message"></label>
-						<input type="text" th:field="*{fname}" placeholder="First Name"
-								class="form-control" /> 
-						</div>
-					</div>
+				<form autocomplete="off" action="#" th:action="@{/lawyer/Details}"
+					th:object="${lawyer}" method="post" class="form-horizontal"
+					role="form" style="width: 1500px;">
+					<h3 class="form-signin-headings">Lawyer Detail</h3>
 
 					<div class="form-group">
 						<div class="col-sm-9">
-						<label	th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"
+							<label th:if="${#fields.hasErrors('lawyerid')}"
+								th:errors="*{lawyerid}" class="validation-message"></label>
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Identification no</h4>
+							<input type="text" th:field="*{lawyerid}"
+								placeholder="Unique Lawyer identification no"
+								class="form-control" style="width: 200px;" />
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"
 								class="validation-message"></label>
-							<input type="text" th:field="*{lname}"
-								placeholder="Last Name" class="form-control" /> 
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								First name</h4>
+							<input type="text" th:field="*{fname}" placeholder="First Name"
+								class="form-control"
+								style="width: 200px; float: left; margin-right: 30px;" /> <label
+								th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"
+								class="validation-message"></label>
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Last name</h4>
+							<input type="text" th:field="*{lname}" placeholder="Last Name"
+								class="form-control" style="width: 200px;" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-9">
-							
-							<label	th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+
+							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 								class="validation-message"></label>
-								<input type="text" th:field="*{email}" placeholder="Email"
-								class="form-control" /> 
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-						<label
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Email id</h4>
+							<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control"
+								style="width: 200px; float: left; margin-right: 30px;" /> <label
 								th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"
 								class="validation-message"></label>
-							<input type="text" th:field="*{phoneNo}"
-								placeholder="PhoneNo" class="form-control" /> 
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Phone no</h4>
+							<input type="text" th:field="*{phoneNo}" placeholder="PhoneNo"
+								class="form-control" style="width: 200px;" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<div class="col-sm-9">
-						<label
-								th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
-								class="validation-message"></label>
+							<label th:if="${#fields.hasErrors('address')}"
+								th:errors="*{address}" class="validation-message"></label>
+							<h4 style="float:left; margin-right:30px; width:232px;">* Address</h4>
 							<input type="text" th:field="*{address}"
-								placeholder="Office Address" class="form-control" /> 
+								placeholder="Office Address" class="form-control" style="width:200px;" />
 						</div>
-					</div>
-						<div class="form-group">
-						<div class="col-sm-9"><h3>* Court:</h3>
-						<label	th:if="${#fields.hasErrors('court')}" th:errors="*{court}"
-								class="validation-message"></label>
-								 <select th:field="*{court}"  style="width: 252px;height: 32px; color:black;">
-	    	          <option th:each="court : ${allCourts}" th:value="${court}" th:text="${court}">Court</option>
-	    	       </select>
-						</div>
-					</div>
-					
-						<div class="form-group">
-						<div class="col-sm-9"><h3>* Type:</h3>
-						<label	th:if="${#fields.hasErrors('type')}" th:errors="*{type}"
-								class="validation-message"></label>
-								 <select th:field="*{type}"  style="width: 252px;height: 32px; color:black;">
-	    	          <option th:each="type : ${allTypes}" th:value="${type}" th:text="${type}">Type</option>
-	    	       </select>
-						</div>
-					</div>
-					
-					
-				
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-						<label
-								th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}"
-								class="validation-message"></label>
-							<input type="text" th:field="*{experience}"
-								placeholder="experience" class="form-control" /> 
-						</div>
-					</div>
-				
-					
-					<div class="form-group">
-						<div class="col-sm-9">
-						<label
-								th:if="${#fields.hasErrors('totalCases')}" th:errors="*{totalCases}"
-								class="validation-message"></label>
-							<input type="text" th:field="*{totalCases}"
-								placeholder="Total Cases" class="form-control" /> 
-						</div>
-					</div>
-					
+					</div> -->
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-primary btn-block">Submit Details</button>
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Court</h4>
+							<label th:if="${#fields.hasErrors('court')}" th:errors="*{court}"
+								class="validation-message"></label> <select th:field="*{court}"
+								style="width: 200px; height: 32px; color: black; float: left; margin-right: 30px;">
+								<option th:each="court : ${allCourts}" th:value="${court}"
+									th:text="${court}">Court</option>
+							</select>
+
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Type</h4>
+							<label th:if="${#fields.hasErrors('type')}" th:errors="*{type}"
+								class="validation-message"></label> <select th:field="*{type}"
+								style="width: 200px; height: 32px; color: black;">
+								<option th:each="type : ${allTypes}" th:value="${type}"
+									th:text="${type}">Type</option>
+							</select>
 						</div>
 					</div>
-					
+
+
+
+
 					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('experience')}"
+								th:errors="*{experience}" class="validation-message"></label>
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Experience</h4>
+							<input type="text" th:field="*{experience}"
+								placeholder="experience" class="form-control"
+								style="width: 200px; float: left; margin-right: 30px;" /> <label
+								th:if="${#fields.hasErrors('totalCases')}"
+								th:errors="*{totalCases}" class="validation-message"></label>
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Total cases</h4>
+							<input type="text" th:field="*{totalCases}"
+								placeholder="Total Cases" class="form-control"
+								style="width: 200px;" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('address')}"
+								th:errors="*{address}" class="validation-message"> </label>
+							<h4 style="float: left; margin-right: 30px; width: 232px;">*
+								Address</h4>
+							<textarea rows="10" cols="100" th:field="*{address}"
+								placeholder="address" class="form-control" maxlength="399"
+								style="resize: both; width: 698px; height: 76px;">
+						</textarea>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block"
+								style="width: 200px; float: left; margin-right: 30px;">Submit
+								Details</button>
+
+							<button type="reset" class="btn btn-md btn-danger btn-block"
+								style="width: 200px;">Reset Details</button>
+
+						</div>
+					</div>
+
+
+					<!-- 	<div class="form-group">
 						<div class="col-sm-9">
 							<button type="reset" class="btn btn-primary btn-block">Reset Details</button>
 						</div>
-					</div>
+					</div> -->
 					<span th:utext="${successMessage}"></span>
-				
-					</form>
-					</div>
-					</div>
-					</div>
-					  <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Online Law Sysetm &copy;  Website 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-	    <script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
-      <script type="text/javascript" th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- <footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Online Law Sysetm &copy;Website 2018</p>
+		</div>
+	</footer> -->
+	<script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

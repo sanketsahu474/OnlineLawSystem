@@ -25,98 +25,116 @@ import com.example.demo.model.Role;
 @Table(name = "user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
+	private int id;
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		@Column(name = "user_id")
-		private int id;
-		@Column(name = "email")
-		@Email(message = "*Please provide a valid Email")
-		@NotEmpty(message = "*Please provide an email")
-		private String email;
-		@Column(name = "password")
-		@Length(min = 5, message = "*Your password must have at least 5 characters")
-		@NotEmpty(message = "*Please provide your password")
-		@Transient
-		private String password;
-		@Column(name = "name")
-		@NotEmpty(message = "*Please provide your name")
-		@Pattern(regexp = "^[a-zA-Z]+$", message = "*please enter first name correctly")
-		private String name;
-		@Column(name = "last_name")
-		@NotEmpty(message = "*Please provide your last name")
-		@Pattern(regexp = "^[a-zA-Z]+$", message = "*please enter last name correctly")
-		private String lastName;
-		@Column(name = "active")
-		private int active;
-		@Column(name="role")
-		@NotEmpty(message="*please select your role")
-		private String role;
-		public String getRole() {
-			return role;
-		}
+	@Column(name = "email")
+	@Email(message = "*Please provide a valid Email.")
+	@NotEmpty(message = "*Please provide an email id.")
+	private String email;
 
-		public void setRole(String role) {
-			this.role = role;
-		}
-		@ManyToMany(cascade = CascadeType.ALL)
-		@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-		private Set<Role> roles;
+	@Column(name = "password")
+	@Length(min = 5, message = "*Your password must have at least 5 characters.")
+	@NotEmpty(message = "*Please provide your password.")
+	@Transient
+	private String password;
 
-		public int getId() {
-			return id;
-		}
+	@Column(name = "name")
+	@NotEmpty(message = "*Please provide your name.")
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "*please enter first name correctly.")
+	private String name;
 
-		public void setId(int id) {
-			this.id = id;
-		}
+	@Column(name = "last_name")
+	@NotEmpty(message = "*Please provide your last name.")
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "*please enter last name correctly.")
+	private String lastName;
 
-		public String getPassword() {
-			return password;
-		}
+	@Column(name = "active")
+	private int active;
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+	@Column(name = "reset_token")
+	private String resetToken;
 
-		public String getName() {
-			return name;
-		}
+	@Column(name = "role")
+	@NotEmpty(message = "*please select your role")
+	private String role;
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public String getRole() {
+		return role;
+	}
 
-		public String getLastName() {
-			return lastName;
-		}
+	public void setRole(String role) {
+		this.role = role;
+	}
 
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
+	@ManyToMany(cascade = CascadeType.DETACH)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
-		public String getEmail() {
-			return email;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public int getActive() {
-			return active;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-		public void setActive(int active) {
-			this.active = active;
-		}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-		public Set<Role> getRoles() {
-			return roles;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public void setRoles(Set<Role> roles) {
-			this.roles = roles;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
 }
-

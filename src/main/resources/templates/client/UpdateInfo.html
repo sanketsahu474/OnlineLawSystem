@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>UpdateDetails</title>
+
+<!-- Bootstrap core CSS -->
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/AdminHome.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/UpdateUser.css}" />
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container"
+			style="margin-left: 0px; margin-right: 0px; max-width: 1800px;">
+			<a class="navbar-brand" href="/client/ClientHome.html">Law System</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/client/SearchIpcCode">Search IPC codes</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/client/SearchLawyer">Search lawyer</a></li>
+					<li class="nav-item"><a class="nav-link" href="/client/Cases">Cases</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="/client/ClientChat">Chat</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/client/UpdateInfo">Update account details</a></li>
+					<li class="nav-item">
+						<form th:action="@{/logout}" method="get">
+							<button class="btn btn-md btn-danger btn-block" name="logout"
+								type="Submit">Logout</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container"
+		style="margin-right: 100px; margin-top: 20px; margin-bottom: 20px; margin-left: 0px;">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-6">
+				<form autocomplete="off" action="#"
+					th:action="@{/client/UpdateInfo}" th:object="${user}" method="post"
+					class="form-horizontal" role="form" style="width: 1500px;">
+					<h2 class="form-signin-headings">Update account details</h2>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="validation-message"></label>
+							<h4 style="float: left; margin-right: 0px; width: 232px;">*
+								First name</h4>
+							<input type="text" th:field="*{name}" placeholder="First name"
+								class="form-control"
+								style="width: 222px; float: left; margin-right: 30px;" /> <label
+								th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+								class="validation-message"></label>
+							<h4 style="float: left; margin-right: 0px; width: 232px;">*
+								Last name</h4>
+							<input type="text" th:field="*{lastName}" placeholder="Last name"
+								class="form-control" style="width: 222px" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"></label>
+							<h4 style="float: left; margin-right: 0px; width: 232px;">*
+								Email id</h4>
+							<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control" style="width: 222px" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<h4 style="float: left; margin-right: 0px; width: 232px;">*
+								Role</h4>
+							<label th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+								class="validation-message"></label> <select th:field="*{role}"
+								style="width: 222px; height: 32px; color: black;">
+								<option th:each="role : ${allRoles}" th:value="${role}"
+									th:text="${role}">Role</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}" class="validation-message"></label>
+							<h4 style="float: left; margin-right: 0px; width: 232px;">*
+								Password</h4>
+							<input type="password" th:field="*{password}"
+								placeholder="Password" class="form-control"
+								style="width: 222px;" /> <label
+								style="float: left; margin right:; margin-right: 20px; margin-top: 30px;"><h4>*
+									Confirm password</h4> </label><input type="password" name="confirm_password"
+								id="confirm_password" class="form-control"
+								style="width: 222px; margin: left; margin-left: 30px; margin-top: 30px;">
+							<span id='message'></span>
+
+							<!-- 	<span id='message'></span>
+									</label> -->
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" id="btnSubmit"
+								class="btn btn-primary btn-block"
+								style="width: 126px; float: left; margin-right: 30px;">Register
+								User</button>
+							<button type="reset" class="btn btn-md btn-danger btn-block"
+								style="width: 126px">Reset Details</button>
+						</div>
+					</div>
+					<span th:utext="${successMessage}"></span>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#password, #confirm_password').on('keyup', function() {
+			if ($('#password').val() == $('#confirm_password').val()) {
+				$('#message').html('Matching').css('color', 'green');
+			} else
+				$('#message').html('Not Matching').css('color', 'red');
+		});
+		$(function() {
+			$("#btnSubmit").click(function() {
+				var password = $("#password").val();
+				var confirmPassword = $("#confirm_password").val();
+				if (password != confirmPassword) {
+					alert("Passwords do not match.");
+					return false;
+				}
+				return true;
+			});
+		});
+	</script>
+	<!-- <footer class="py-5 bg-dark" style="padding-top:0px;padding-bottom:0px;">
+		<div class="container">
+			<p class="m-0 text-center text-white">Online Law Sysetm &copy;
+				Website 2018</p>
+		</div>
+	</footer> -->
+
+	<script type="text/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
