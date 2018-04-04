@@ -118,10 +118,12 @@
 					<thead>
 						<tr>
 							<th width="10%">First name</th>
-							<th width="20%">Last name</th>
-							<th width="20%">Email id</th>
-							<th width="25%">Phone number</th>
-							<th width="25%">Address</th>
+							<th width="10%">Last name</th>
+							<th width="15%">Email id</th>
+							<th width="15%">Phone number</th>
+							<th width="10%">Experience</th>
+							<th width="10%">Total cases</th>
+							<th width="30%">Address</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -130,6 +132,8 @@
 							<td th:text="${lawyers.lname}"></td>
 							<td th:text="${lawyers.email}"></td>
 							<td th:text="${lawyers.phoneNo}"></td>
+							<td th:text="${lawyers.experience}"></td>
+							<td th:text="${lawyers.totalCases}"></td>
 							<td th:text="${lawyers.address}"></td>
 						</tr>
 					</tbody>
