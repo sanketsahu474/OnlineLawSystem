@@ -17,7 +17,7 @@ public interface LawyerRepository extends JpaRepository<LawyerInfo, Integer> {
 
 	List<LawyerInfo> findByCourtAndType(String court, String type);
 
-	List<String> findByType(String type);
+	List<LawyerInfo> findByType(String type);
 	
 	void deleteByUserId(int userid);
 }

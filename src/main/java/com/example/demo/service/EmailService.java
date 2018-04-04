@@ -28,7 +28,7 @@ public class EmailService {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setTo(toEmail);
 		mailMessage.setSubject(subject);
-		mailMessage.setText("OKFINE I AM HERE");
+		mailMessage.setText(message);
 		mailMessage.setFrom("sanketsahu474@gmail.com");
 		javaMailSender.send(mailMessage);
 	}

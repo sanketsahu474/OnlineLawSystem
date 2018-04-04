@@ -18,7 +18,6 @@
 
 <!-- Custom styles for this template -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/Details.css}" />
-<!-- Latest compiled and minified CSS -->
 
 </head>
 <body>
@@ -51,12 +50,11 @@
 						<form th:action="@{/logout}" method="get">
 							<button class="btn btn-md btn-danger btn-block" name="logout"
 								type="Submit">Logout</button>
-						</form> <!--     <a class="nav-link" href="contact.html">Logout</a> -->
+						</form> 
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 
 	<div class="container"
 		style="margin-right: 200px; margin-top: 20px; margin-bottom: 20px; margin-left: 0px;">
@@ -69,62 +67,59 @@
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('lawyerid')}"
-								th:errors="*{lawyerid}" class="validation-message"></label>
+						
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Identification no</h4>
 							<input type="text" th:field="*{lawyerid}"
 								placeholder="Unique Lawyer identification no"
-								class="form-control" style="width: 200px;" />
+								class="form-control" style="width: 690px;" />
+								<label th:if="${#fields.hasErrors('lawyerid')}"
+								th:errors="*{lawyerid}" class="validation-message"></label>	
 						</div>
 					</div>
 
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"
-								class="validation-message"></label>
+							
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								First name</h4>
+								
 							<input type="text" th:field="*{fname}" placeholder="First Name"
 								class="form-control"
-								style="width: 200px; float: left; margin-right: 30px;" /> <label
-								th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"
-								class="validation-message"></label>
+								style="width: 200px; float: left; margin-right: 30px;" /> 
+								
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Last name</h4>
 							<input type="text" th:field="*{lname}" placeholder="Last Name"
 								class="form-control" style="width: 200px;" />
+								<label th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"
+								class="validation-message"style="width: 200px; float: left; margin-right: 30px;" ></label>	
+								<label
+								th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"
+								class="validation-message"style="width: 200px; margin-left:270px;"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-9">
 
-							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-								class="validation-message"></label>
+							
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Email id</h4>
 							<input type="text" th:field="*{email}" placeholder="Email"
 								class="form-control"
-								style="width: 200px; float: left; margin-right: 30px;" /> <label
-								th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"
-								class="validation-message"></label>
+								style="width: 200px; float: left; margin-right: 30px;" /> 
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Phone no</h4>
 							<input type="text" th:field="*{phoneNo}" placeholder="PhoneNo"
 								class="form-control" style="width: 200px;" />
+								<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"style="width: 200px; float: left; margin-right: 30px;" ></label>
+								<label
+								th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"
+								class="validation-message"style="width: 200px; margin-left:270px;"></label>
 						</div>
 					</div>
-
-					<!-- <div class="form-group">
-						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('address')}"
-								th:errors="*{address}" class="validation-message"></label>
-							<h4 style="float:left; margin-right:30px; width:232px;">* Address</h4>
-							<input type="text" th:field="*{address}"
-								placeholder="Office Address" class="form-control" style="width:200px;" />
-						</div>
-					</div> -->
 
 					<div class="form-group">
 						<div class="col-sm-9">
@@ -147,62 +142,51 @@
 							</select>
 						</div>
 					</div>
-
-
-
-
+					
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('experience')}"
-								th:errors="*{experience}" class="validation-message"></label>
+							
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Experience</h4>
 							<input type="text" th:field="*{experience}"
 								placeholder="experience" class="form-control"
-								style="width: 200px; float: left; margin-right: 30px;" /> <label
-								th:if="${#fields.hasErrors('totalCases')}"
-								th:errors="*{totalCases}" class="validation-message"></label>
+								style="width: 200px; float: left; margin-right: 30px;" /> 
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Total cases</h4>
 							<input type="text" th:field="*{totalCases}"
 								placeholder="Total Cases" class="form-control"
 								style="width: 200px;" />
+								<label th:if="${#fields.hasErrors('experience')}"
+								th:errors="*{experience}" class="validation-message"style="width: 200px; float: left; margin-right: 30px;"></label>
+								<label
+								th:if="${#fields.hasErrors('totalCases')}"
+								th:errors="*{totalCases}" class="validation-message"style="width: 200px; margin-left:270px;"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('address')}"
-								th:errors="*{address}" class="validation-message"> </label>
+							
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Address</h4>
 							<textarea rows="10" cols="100" th:field="*{address}"
 								placeholder="address" class="form-control" maxlength="399"
 								style="resize: both; width: 698px; height: 76px;">
 						</textarea>
+						<label th:if="${#fields.hasErrors('address')}"
+								th:errors="*{address}" class="validation-message"> </label>
 						</div>
 					</div>
-
 
 					<div class="form-group">
 						<div class="col-sm-9">
 							<button type="submit" class="btn btn-primary btn-block"
 								style="width: 200px; float: left; margin-right: 30px;">Submit
 								Details</button>
-
 							<button type="reset" class="btn btn-md btn-danger btn-block"
 								style="width: 200px;">Reset Details</button>
-
 						</div>
 					</div>
-
-
-					<!-- 	<div class="form-group">
-						<div class="col-sm-9">
-							<button type="reset" class="btn btn-primary btn-block">Reset Details</button>
-						</div>
-					</div> -->
 					<span th:utext="${successMessage}"></span>
-
 				</form>
 			</div>
 		</div>

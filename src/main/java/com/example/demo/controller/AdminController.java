@@ -24,7 +24,7 @@ public class AdminController {
 	private String emailid;
 	ConstantList list = new ConstantList();
 
-	// Request for admin home page
+	// Request for ADMIN home page
 
 	@RequestMapping(value = "/admin/AdminHome", method = RequestMethod.GET)
 	public ModelAndView home() {
@@ -39,7 +39,7 @@ public class AdminController {
 
 	}
 
-	// request for user Info page by admin
+	// request for user Info page by ADMIN
 
 	@RequestMapping(value = "/admin/UserInfo", method = RequestMethod.GET)
 	public ModelAndView getuserInfo() {
@@ -49,7 +49,7 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	// Request for adding Ipc Codes
+	// Request for adding IPC Codes
 
 	@RequestMapping(value = "/admin/AddIpcCode", method = RequestMethod.GET)
 	public ModelAndView getAddIpcCodes() {
@@ -123,7 +123,7 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	// Request for Updating Ipc Codes
+	// Request for Updating IPC Codes
 
 	@RequestMapping(value = { "/edit_ipc" }, method = RequestMethod.GET)
 	public ModelAndView getUpdateipc(@RequestParam(name = "sectionId") String section) {
@@ -131,7 +131,7 @@ public class AdminController {
 		IpcCode ipc = userService.findBySection(section);
 		modelAndView.addObject("ipc", ipc);
 		modelAndView.addObject("allkeywords", list.getKeywords());
-		modelAndView.setViewName("admin/UpdateIpcCode");
+		modelAndView.setViewName("/admin/UpdateIpcCode");
 		return modelAndView;
 	}
 
@@ -142,7 +142,7 @@ public class AdminController {
 		IpcCode ipcExists = userService.findBySection(ipc.getSection());
 		if (ipcExists == null) {
 			bindingResult.rejectValue("section", "error",
-					"There such no Ipc section exist in database, please go to add option to add this Ipc section.");
+					"");
 		}
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("admin/UpdateIpcCode");
@@ -150,8 +150,8 @@ public class AdminController {
 			userService.saveIpcCode(ipc);
 			modelAndView.addObject("successMessage", "Ipc Code has Been updated Succesfully.");
 			modelAndView.addObject("allkeywords", list.getKeywords());
-			modelAndView.addObject("ipc", new IpcCode());
-			modelAndView.setViewName("admin/UpdateIpcCode");
+			modelAndView.addObject("ipc", ipc);
+			modelAndView.setViewName("/admin/UpdateIpcCode");
 		}
 		return modelAndView;
 	}

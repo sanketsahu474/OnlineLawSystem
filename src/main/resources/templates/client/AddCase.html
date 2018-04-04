@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Cases</title>
+<title>Add Case</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css"
@@ -63,7 +63,7 @@
 		style="margin-right: 100px; margin-top: 20px; margin-bottom: 20px; margin-left: 0px;">
 		<div class="row">
 			<div class="col-lg-8 mb-4">
-				<form autocomplete="off" action="#" th:action="@{/client/Cases}"
+				<form autocomplete="off" action="#" th:action="@{/client/AddCase}"
 					th:object="${cases}" method="post" class="form-horizontal"
 					role="form" style="width: 1200px;">
 					<h2 class="form-signin-headings">Case details</h2>
@@ -106,30 +106,35 @@
 					<div class="form-group">
 						<div class="col-sm-9">
 							<label th:if="${#fields.hasErrors('contact')}"
-								th:errors="*{contact}" class="validation-message"></label>
+								th:errors="*{contact}" class="validation-message" style="float: right; margin-right: 100px;"></label>
 							<h4 style="float: left; margin-right: 30px; width: 232px;">*
 								Contact no.</h4>
 							<input type="text" th:field="*{contact}" placeholder="Contact no"
 								class="form-control" style="width: 222px" />
 						</div>
 					</div>
-
+				
 					<div id="success"></div>
 
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block"
-							style="width: 222px; float: left; margin-right: 30px;">Send
+							style="width: 222px; float: left; margin-right: 30px;    margin-top: 30px;">Send
 							and submit</button>
 					</div>
+				<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block"
+							style="width: 222px;    margin-top: 45px;">save</button>
+					</div>  
+					<span th:utext="${successMessage}"></span>
 				</form>
-				<form autocomplete="off" action="#" th:action="@{/sendToAll}"
+				 <!--  <form autocomplete="off" action="#" th:action="@{/sendToAll}"
 					th:object="${cases}" method="post" class="form-horizontal"
 					role="form">
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block"
 							style="width: 222px;">Send to all and submit</button>
 					</div>
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -71,7 +70,7 @@ public class UserServiceImplementation implements UserService {
 	  public User findUserByResetToken(String resetToken) {
 	    return userRepository.findByResetToken(resetToken);
 	  }
-	/* to check if lawyer given emailid is been used by any other person or not*/
+	/* to check if lawyer given emailId is been used by any other person or not*/
 	@Override
 	public LawyerInfo findLawyerByEmail(String email) {
 		return lawyerRepository.findByEmail(email);
@@ -89,7 +88,7 @@ public class UserServiceImplementation implements UserService {
 		return userRepository.findAll();
 	}
 	
-	/*To find list of all ipc codes*/
+	/*To find list of all IPC codes*/
 	@Override
 	public List<IpcCode> findAllIpc() {
 		return ipccodeRepository.findAll();
@@ -108,13 +107,13 @@ public class UserServiceImplementation implements UserService {
 		return userRepository.findById(id);
 	}
 	
-	/* to find ipc Code based on it section no.*/
+	/* to find IPC Code based on it section no.*/
 	@Override
 	public IpcCode findBySection(String section) {
 	 return	ipccodeRepository.findBySection(section);
 	}
 	
-	/*to find ipc code based on its keywords*/
+	/*to find IPC code based on its keywords*/
 	@Override
 	public List<IpcCode> findByKeyword(String keyword) {
 		return ipccodeRepository.findByKeyword(keyword);
@@ -135,7 +134,7 @@ public class UserServiceImplementation implements UserService {
 	
 	/* to find the list of*/
 	@Override
-	public List<String> findByTypes(String type) {
+	public List<LawyerInfo> findByTypes(String type) {
 		return lawyerRepository.findByType(type);
 	}
 	
@@ -191,6 +190,16 @@ public class UserServiceImplementation implements UserService {
 
 	/* to save the case in database */
 	@Override
+	public void UpdateCase(Case cases,int case_id, int user_id) {
+		cases.setCaseId(case_id);
+		cases.setDescription(cases.getDescription());
+		cases.setCaseType(cases.getCaseType());
+		User userid = userRepository.findById(user_id);
+		cases.setUser(userid);
+		casesRepository.save(cases);
+	}
+
+	@Override
 	public void saveCase(Case cases, int user_id) {
 		cases.setCaseId(cases.getCaseId());
 		cases.setDescription(cases.getDescription());
@@ -199,8 +208,7 @@ public class UserServiceImplementation implements UserService {
 		cases.setUser(userid);
 		casesRepository.save(cases);
 	}
-
-	/* to delete any ipc code base on it section no. */
+	/* to delete any IPC code base on it section no. */
 	@Transactional
 	public void deleteipcBySection(String section) {
 		ipccodeRepository.deleteBySection(section);

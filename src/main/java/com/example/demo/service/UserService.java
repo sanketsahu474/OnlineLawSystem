@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-
 import com.example.demo.model.Case;
 import com.example.demo.model.IpcCode;
 import com.example.demo.model.LawyerInfo;
@@ -38,6 +37,8 @@ public interface UserService {
 	public void saveIpcCode(IpcCode ipc);
 
 	public void saveCase(Case cases, int user_id);
+	
+	public void UpdateCase(Case cases,int case_id, int user_id);
 
 	public void deleteipcBySection(String section);
 
@@ -53,7 +54,7 @@ public interface UserService {
 	
 	public List<Case> findByUsers(User userid);
 	
-	public List<String> findByTypes(String type);
+	public List<LawyerInfo> findByTypes(String type);
 	
 	public List<Case> findAllCases();
 	

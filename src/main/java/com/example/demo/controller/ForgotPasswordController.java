@@ -123,16 +123,17 @@ public class ForgotPasswordController {
 		} else {
 			users = new User();
 			modelAndView.addObject("user", users);
-			modelAndView.addObject("errorMessage", "Oops!  This is an invalid password reset link.");
+			modelAndView.addObject("errorMessage", "Oops!  This is an invalid password reset link. password can not be updated.");
 			modelAndView.setViewName("reset");
 		}
 
 		return modelAndView;
 	}
-
 	// Going to reset page without a token redirects to login page
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ModelAndView handleMissingParams(MissingServletRequestParameterException ex) {
-		return new ModelAndView("redirect:login");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("redirect:login");
+		return  modelAndView;
 	}
 }

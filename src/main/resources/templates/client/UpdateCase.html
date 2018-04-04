@@ -7,7 +7,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Cases</title>
+<title>Update Case</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" type="text/css"
 	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
@@ -55,7 +55,7 @@
 		style="margin-right: 100px; margin-top: 20px; margin-bottom: 20px; margin-left: 0px;">
 		<div class="row">
 			<div class="col-lg-8 mb-4">
-				<form autocomplete="off" action="#" th:action="@{/client/Cases}"
+				<form autocomplete="off" action="#" th:action="@{/client/UpdateCase}"
 					th:object="${cases}" method="post" class="form-horizontal"
 					role="form" style="width: 1200px;">
 					<h2 class="form-signin-headings">Update case details</h2>
@@ -109,7 +109,7 @@
 
 					<div id="success"></div>
 					<!-- For success/fail messages -->
-
+					<span th:utext="${successMessage}"></span>
 					<div class="form-group">
 
 						<button type="submit" class="btn btn-primary btn-block"
@@ -118,7 +118,7 @@
 					</div>
 
 				</form>
-				<form autocomplete="off" action="#" th:action="@{/sendToAll}"
+				<!--  <form autocomplete="off" action="#" th:action="@{/sendToAll}"
 					th:object="${cases}" method="post" class="form-horizontal"
 					role="form">
 					<div class="form-group">
@@ -126,7 +126,7 @@
 						<button type="submit" class="btn btn-primary btn-block"
 							style="width: 222px;">Send to all and submit</button>
 					</div>
-				</form>
+				</form>-->
 			</div>
 		</div>
 	</div>

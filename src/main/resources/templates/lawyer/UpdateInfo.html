@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Update User details</title>
+<title>Update details</title>
 
 <!-- Bootstrap core CSS -->
 
@@ -75,59 +75,61 @@
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-								class="validation-message"></label>
+							
 							<h4 style="float: left; margin-right: 0px; width: 232px;">*
 								First name</h4>
 							<input type="text" th:field="*{name}" placeholder="First name"
 								class="form-control"
-								style="width: 222px; float: left; margin-right: 30px;" /> <label
-								th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-								class="validation-message"></label>
+								style="width: 222px; float: left; margin-right: 30px;" /> 
 							<h4 style="float: left; margin-right: 0px; width: 232px;">*
 								Last name</h4>
 							<input type="text" th:field="*{lastName}" placeholder="Last name"
 								class="form-control" style="width: 222px" />
+								<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="validation-message" style="width: 200px; float: left; margin-right: 30px;"></label>
+								<label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+								class="validation-message"style="width: 200px; margin-left:270px;"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-								class="validation-message"></label>
+							
 							<h4 style="float: left; margin-right: 0px; width: 232px;">*
 								Email id</h4>
 							<input type="text" th:field="*{email}" placeholder="Email"
-								class="form-control" style="width: 222px" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-9">
+								class="form-control" style="width: 222px;float:left;margin-right:30px;" />
+								
+					
 							<h4 style="float: left; margin-right: 0px; width: 232px;">*
 								Role</h4>
-							<label th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
-								class="validation-message"></label> <select th:field="*{role}"
+							 <select th:field="*{role}"
 								style="width: 222px; height: 32px; color: black;">
 								<option th:each="role : ${allRoles}" th:value="${role}"
 									th:text="${role}">Role</option>
 							</select>
+							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"></label>
+								<label th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+								class="validation-message"></label>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-sm-9">
-							<label th:if="${#fields.hasErrors('password')}"
-								th:errors="*{password}" class="validation-message"></label>
+							
 							<h4 style="float: left; margin-right: 0px; width: 232px;">*
 								Password</h4>
 							<input type="password" th:field="*{password}"
-								placeholder="Password" class="form-control" style="width: 222px" />
+								placeholder="Password" class="form-control" style="width: 222px;float:left;margin-right:30px;"/>
+								
 							<label
-								style="float: left; margin right:; margin-right: 20px; margin-top: 30px;"><h4>*
+								style="float: left; margin right:; margin-right: 20px; margin-top: 0px;"><h4>*
 									Confirm password</h4> </label><input type="password" name="confirm_password"
 								id="confirm_password" class="form-control"
 								style="width: 222px; margin: left; margin-left: 30px; margin-top: 30px;">
 							<span id='message'></span>
+							<label th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}" class="validation-message"></label>
 
 						</div>
 					</div>

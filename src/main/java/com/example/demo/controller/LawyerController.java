@@ -38,7 +38,6 @@ public class LawyerController {
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with Lawyer Role");
 		modelAndView.setViewName("lawyer/LawyerHome");
 		return modelAndView;
-
 	}
 
 	// Edit user info
@@ -67,7 +66,7 @@ public class LawyerController {
 			}
 		}
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("client/UpdateInfo");
+			modelAndView.setViewName("lawyer/UpdateInfo");
 		} else {
 			userService.updateUser(user, User_id);
 			modelAndView.addObject("successMessage", "user has been updated.");
@@ -77,6 +76,7 @@ public class LawyerController {
 		}
 		return modelAndView;
 	}
+	
 	// Request for searching IPC Codes
 
 	@RequestMapping(value = "/lawyer/SearchIpc", method = RequestMethod.GET)
@@ -142,6 +142,7 @@ public class LawyerController {
 		modelAndView.setViewName("/lawyer/ShowCases");
 		return modelAndView;
 	}
+	
 	// Request for filling lawyer details
 
 	@RequestMapping(value = "/lawyer/Details", method = RequestMethod.GET)
@@ -155,7 +156,6 @@ public class LawyerController {
 		if (lawyer.getEmail() == null) {
 			lawyer = new LawyerInfo();
 		}
-
 		modelAndView.addObject("lawyer", lawyer);
 		modelAndView.addObject("allCourts", list.getCourt());
 		modelAndView.addObject("allTypes", list.getType());
@@ -189,5 +189,4 @@ public class LawyerController {
 		modelAndView.setViewName("/lawyer/LawyerChat");
 		return modelAndView;
 	}
-
 }

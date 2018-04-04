@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -29,6 +27,7 @@ public class ClientController {
 	private EmailService emailService;
 	private int users_id;
 	private String emailId;
+	private int case_id;
 	ConstantList list = new ConstantList();
 
 	// Request for client home page
@@ -163,10 +162,11 @@ public class ClientController {
 		ModelAndView modelAndView = new ModelAndView();
 		User userid = userService.findByIds(users_id);
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("/client/Cases");
+			modelAndView.setViewName("/client/Case");
 		} else {
 			if (email != null)
 				emailService.sendMail(email, "This case has been offered to you ", cases.getDescription());
+
 			userService.saveCase(cases, users_id);
 			modelAndView.addObject("cases", new Case());
 			modelAndView.addObject("case", userService.findByUsers(userid));
@@ -195,29 +195,33 @@ public class ClientController {
 	@RequestMapping(value = { "/edit_case" }, method = RequestMethod.GET)
 	public ModelAndView getUpdateCase(@RequestParam(name = "caseId") int caseid) {
 		ModelAndView modelAndView = new ModelAndView();
+		case_id = caseid;
 		Case cases = userService.findcaseByCaseid(caseid);
 		modelAndView.addObject("cases", cases);
 		modelAndView.addObject("allcasetypes", list.getCaseType());
-
 		modelAndView.setViewName("/client/UpdateCase");
-
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/client/UpdateCase", method = RequestMethod.POST)
-	public ModelAndView setUpdateCase(@Valid @ModelAttribute Case cases, BindingResult bindingResult,
+	public ModelAndView setUpdateCase(@Valid @ModelAttribute("cases") Case cases, BindingResult bindingResult,
 			@RequestParam("email") String email) {
 		ModelAndView modelAndView = new ModelAndView();
+		Case caseExists = userService.findcaseByCaseid(cases.getCaseId());
+		if (caseExists != null) {
+			bindingResult.rejectValue("cases", "error", "");
+		}
 		if (bindingResult.hasErrors()) {
-
-			modelAndView.setViewName("/client/Cases");
+			modelAndView.addObject("allcasetypes", list.getCaseType());
+			modelAndView.setViewName("/client/UpdateCase");
 		} else {
 
 			if (email != null)
-				emailService.sendMail(email, "This case has been offered to you ", cases.getDescription());
+				emailService.sendMail(email, "The case has little updates ", cases.getDescription());
 
-			userService.saveCase(cases, users_id);
-			modelAndView.addObject("cases", new Case());
+			userService.UpdateCase(cases, case_id, users_id);
+			modelAndView.addObject("cases", cases);
+			modelAndView.addObject("successMessage", "case has been updated.");
 			modelAndView.addObject("allcasetypes", list.getCaseType());
 			modelAndView.setViewName("/client/UpdateCase");
 		}
@@ -237,61 +241,65 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/client/AddCase", method = RequestMethod.POST)
-	public ModelAndView setAddCases(@Valid @ModelAttribute Case cases, BindingResult bindingResult,
-			@RequestParam("email") String email) {
+	public ModelAndView setAddCases(@Valid @ModelAttribute("cases") Case cases, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
+		if (cases == null) {
+			bindingResult.rejectValue("cases", "error.cases", "There is something wrong");
+		}
 		if (bindingResult.hasErrors()) {
-
-			modelAndView.setViewName("/client/Cases");
+			modelAndView.addObject("allcasetypes", list.getCaseType());
+			modelAndView.setViewName("/client/AddCase");
 		} else {
-
-			if (email != null)
-				emailService.sendMail(email, "This case has been offered to you ", cases.getDescription());
+			userService.saveCase(cases, users_id);
+			if (cases.getEmail().length() >= 5) {
+				emailService.sendMail(cases.getEmail(), "This case has been offered to you ", cases.getDescription());
+			}
 
 			userService.saveCase(cases, users_id);
 			modelAndView.addObject("cases", new Case());
 			modelAndView.addObject("allcasetypes", list.getCaseType());
+			modelAndView.addObject("successMessage", "case has been registered succesfully.");
 			modelAndView.setViewName("/client/AddCase");
+
 		}
 		return modelAndView;
 	}
 
-	// Request for sending mail to all in particular field
-
-	@RequestMapping(value = "/sendToAll", method = RequestMethod.POST)
-	public ModelAndView sendToAll(@Valid @ModelAttribute Case cases, BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView();
-		User userid = userService.findByIds(users_id);
-
-		/*
-		 * if (bindingResult.hasErrors()) {
-		 * modelAndView.addObject("allcasetypes",getCaseType());
-		 * modelAndView.setViewName("/client/Cases"); } else {
-		 */
-		List<String> emails = userService.findByTypes(cases.getCaseType());
-		// String[] email = emails.toArray(new String[emails.size()]);
-		String[] email = new String[emails.size() + 1];
-		email[0] = "sanketsahu474@gmail.com";
-		for (int i = 1; i < emails.size(); i++) {
-			email[i] = emails.get(i - 1);
-		}
-
-		emailService.sendMails(email, "This case has been offered to you ", cases.getDescription());
-		userService.saveCase(cases, users_id);
-		modelAndView.addObject("cases", new Case());
-		modelAndView.addObject("allcasetypes", list.getCaseType());
-		modelAndView.addObject("case", userService.findByUsers(userid));
-		modelAndView.setViewName("/client/Cases");
-		// }
-		return modelAndView;
-	}
-
-	// Request for Contacting client by user
 	@RequestMapping(value = "/client/ClientChat", method = RequestMethod.GET)
 	public ModelAndView ClientChat() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/client/ClientChat");
 		return modelAndView;
 	}
+
+	// Request for sending mail to all in particular field
+
+	/*
+	 * @RequestMapping(value = "/sendToAll", method = RequestMethod.POST) public
+	 * ModelAndView sendToAll(@Valid @ModelAttribute("cases") Case cases,
+	 * BindingResult bindingResult) { ModelAndView modelAndView = new
+	 * ModelAndView(); User userid = userService.findByIds(users_id);
+	 * 
+	 * List<LawyerInfo> emails = userService.findByTypes(cases.getCaseType());
+	 * String[] array = new String[emails.size()]; int index = 0; for (Object value
+	 * : emails) { array[index] = (String) value; index++; } /* String[] email =
+	 * emails.toArray(new String[emails.size()]); String[] email = new
+	 * String[emails.size() + 1]; email[0] = "sanketsahu474@gmail.com"; for (int i =
+	 * 1; i < emails.size(); i++) { email[i] = emails.get(i - 1); }
+	 * 
+	 * emailService.sendMails(array, "This case has been offered to you ",
+	 * "something"); //userService.saveCase(cases, users_id);
+	 * modelAndView.addObject("cases", new Case());
+	 * modelAndView.addObject("allcasetypes", list.getCaseType());
+	 * modelAndView.addObject("case", userService.findByUsers(userid));
+	 * modelAndView.setViewName("/client/Cases"); // } return modelAndView; }
+	 * 
+	 * // Request for Contacting client by user
+	 * 
+	 * @RequestMapping(value = "/client/ClientChat", method = RequestMethod.GET)
+	 * public ModelAndView ClientChat() { ModelAndView modelAndView = new
+	 * ModelAndView(); modelAndView.setViewName("/client/ClientChat"); return
+	 * modelAndView; }
+	 */
 
 }
